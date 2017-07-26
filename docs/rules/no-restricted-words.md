@@ -2,7 +2,7 @@
 
 Validates that title, summary, or description do not contain restricted strings.  These are strings that may be used internally, or those which are no longer recommended branding terms.  Any accepted term is matched, and case is ignored.
 
-## Examples of *correct* usage given the config: `{"words": ["My Deprecated Brand", "SUPERSECRETACRONYM"]`
+## Examples of *correct* usage given the config: `{"words": ["My Deprecated Brand", "SUPERSECRETACRONYM"]}`
 
 ```
 {
@@ -32,7 +32,7 @@ Validates that title, summary, or description do not contain restricted strings.
 }
 ```
 
-## Examples of *incorrect* usage given the config: `{"words": ["My Deprecated Brand", "SUPERSECRETACRONYM"]`
+## Examples of *incorrect* usage given the config: `{"words": ["My Deprecated Brand", "SUPERSECRETACRONYM"]}`
 ```
 {
 	"info": {
