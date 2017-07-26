@@ -2,6 +2,10 @@
   "name": "openapilint",
   "version": "0.1.0",
   "description": "Node.js linter for OpenAPI specs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/braintree/openapilint.git"
+  },
   "license": "MIT",
   "engines": {
     "node": ">=4.2"
