@@ -6,6 +6,7 @@
     "type": "git",
     "url": "git+https://github.com/braintree/openapilint.git"
   },
+  "main": "./lib/OpenApiLint.js",
   "license": "MIT",
   "engines": {
     "node": ">=4.2"
