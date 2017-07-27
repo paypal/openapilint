@@ -1,6 +1,4 @@
-examples/*
 test/*
-docs/*
 .github/*
 .eslintrc.json
 .nvmrc
