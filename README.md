@@ -1,3 +1,7 @@
+[![NPM version][npm-image]][npm-url]
+[![build status][travis-image]][travis-url]
+[![Downloads][downloads-image]][downloads-url]
+
 # openapilint
 
 This project uses Node.js to implement an OpenAPI linter.  As with any linter, there are configurable options for validating your OpenAPI specs.
@@ -57,4 +61,11 @@ Due to the complex nature of multi-file references, `openapilint` rules assume t
 
 ## Acknowledgements
 
-This project was inspired by - and heavily influenced by - [`eslint`](https://github.com/eslint/eslint/) and [`markdownlint`](https://github.com/DavidAnson/markdownlint).  The configuration schema and some code was modified for usage in this project.
+This project was inspired by - and heavily influenced by - [`openapilint`](https://github.com/openapilint/openapilint/) and [`markdownlint`](https://github.com/DavidAnson/markdownlint).  The configuration schema and some code was modified for usage in this project.
+
+[npm-image]: https://img.shields.io/npm/v/openapilint.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/openapilint
+[travis-image]: https://img.shields.io/travis/openapilint/openapilint/master.svg?style=flat-square
+[travis-url]: https://travis-ci.org/openapilint/openapilint
+[downloads-image]: https://img.shields.io/npm/dm/openapilint.svg?style=flat-square
+[downloads-url]: https://www.npmjs.com/package/openapilint
