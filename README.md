@@ -8,7 +8,6 @@ This project uses Node.js to implement an OpenAPI linter.  As with any linter, t
 npm install openapilint --save
 ```
 
-
 ## Usage
 
 `openapilint` takes as input a json schema, and json config object:
@@ -50,7 +49,7 @@ It is up to the implementer to parse this data and provide a useful error respon
 
 ## Rules
 
-By default, only the rules in `lib/rules` are supported.  Details of these rules can be found in the [`docs/rules`](docs/rules) directory.
+By default, only the rules in `lib/rules` are supported.  Details of these rules can be found in [`docs/rules`](https://github.com/braintree/openapilint/tree/master/docs/rules).
 
 ## Dereferencing
 
