@@ -16,14 +16,14 @@ describe('all-rules', () => {
    
       items.forEach(function(element) {
         const requiredName = path.parse(element).name;
-        rule = require(`../../${rulesPath}/${requiredName}`);
+        const rule = require(`../../${rulesPath}/${requiredName}`);
 
         // rules should have a non-empty description
         assert.isDefined(rule.description);
         assert.isTrue(rule.description.length > 0);
 
         // validating a rule should return a failure list
-        result = rule.validate({}, {});
+        const result = rule.validate({}, {});
         assert.isTrue(result instanceof List, `${requiredName} returned a ${result}`);
       });
 
