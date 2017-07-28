@@ -65,7 +65,7 @@ This project was inspired by - and heavily influenced by - [`openapilint`](https
 
 [npm-image]: https://img.shields.io/npm/v/openapilint.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/openapilint
-[travis-image]: https://img.shields.io/travis/openapilint/openapilint/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/openapilint/openapilint
+[travis-image]: https://img.shields.io/travis/braintree/openapilint/master.svg?style=flat-square
+[travis-url]: https://travis-ci.org/braintree/openapilint
 [downloads-image]: https://img.shields.io/npm/dm/openapilint.svg?style=flat-square
 [downloads-url]: https://www.npmjs.com/package/openapilint
