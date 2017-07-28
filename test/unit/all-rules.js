@@ -1,4 +1,3 @@
-const chai = require('chai');
 const assert = require('chai').assert;
 const fs = require('fs');
 const path = require('path');
