@@ -5,6 +5,7 @@ const OpenApiLint = require('../../lib/OpenApiLint');
 const Map = require('immutable').Map;
 
 const expect = chai.expect;
+const assert = chai.assert;
 chai.use(chaiAsPromised);
 
 describe('OpenApiLint', () => {
@@ -15,8 +16,8 @@ describe('OpenApiLint', () => {
     const result = new OpenApiLint(config).lint(schema);
 
     return result.then((lintResult) => {
-      expect(lintResult instanceof Map).to.be.true();
-      expect(lintResult.size).to.equal(0);
+      assert.isTrue(lintResult instanceof Map);
+      assert.equal(lintResult.size, 0);
     });
   });
 
@@ -35,10 +36,10 @@ describe('OpenApiLint', () => {
     const result = new OpenApiLint(config).lint(schema);
 
     return result.then((lintResult) => {
-      expect(lintResult instanceof Map).to.be.true();
-      expect(lintResult.size).to.equal(1);
-      expect(lintResult.get('no-restricted-words').get('description')).to.be.not.undefined();
-      expect(lintResult.get('no-restricted-words').get('failures').size).to.equal(0);
+      assert.isTrue(lintResult instanceof Map);
+      assert.equal(lintResult.size, 1);
+      assert.isDefined(lintResult.get('no-restricted-words').get('description'));
+      assert.equal(lintResult.get('no-restricted-words').get('failures').size, 0);
     });
   });
 
@@ -58,11 +59,12 @@ describe('OpenApiLint', () => {
     const result = new OpenApiLint(config).lint(schema);
 
     return result.then((lintResult) => {
-      expect(lintResult instanceof Map).to.be.true();
-      expect(lintResult.size).to.equal(1);
-      expect(lintResult.get('no-restricted-words').get('description')).to.be.not.undefined();
-      expect(lintResult.get('no-restricted-words').get('failures').size).to.equal(1);
-      expect(lintResult.get('no-restricted-words').get('failures').get(0).get('location')).to.equal('info.description');
+      assert.isTrue(lintResult instanceof Map);
+      assert.equal(lintResult.size, 1);
+      assert.isDefined(lintResult.get('no-restricted-words').get('description'));
+
+      assert.equal(lintResult.get('no-restricted-words').get('failures').size, 1);
+      assert.equal(lintResult.get('no-restricted-words').get('failures').get(0).get('location'), 'info.description');
     });
   });
 
