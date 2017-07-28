@@ -1,7 +1,0 @@
-docs/*
-test/*
-.github/*
-.eslintrc.json
-.nvmrc
-.npmignore
-npm-debug.log

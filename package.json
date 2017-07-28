@@ -15,6 +15,9 @@
     "test": "mocha --check-leaks --recursive --reporter spec test/unit",
     "lint": "eslint *.js ./lib ./test"
   },
+  "files": [
+    "lib"
+  ],
   "dependencies": {
     "immutable": "^3.8.1",
     "lodash": "^3.3.1"
