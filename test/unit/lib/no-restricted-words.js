@@ -9,10 +9,9 @@ describe('no-restricted-words', () => {
   it('should not report errors when not enabled', () => {
     const schema = {};
 
-    const result = noRestrictedWordsRule.validate(false, schema);
+    const failures = noRestrictedWordsRule.validate(false, schema);
 
-    assert.isDefined(result.get('description'));
-    assert.equal(result.get('failures').size, 0);
+    assert.equal(failures.size, 0);
   });
 
   it('should not report errors when schema is perfect', () => {
@@ -41,10 +40,9 @@ describe('no-restricted-words', () => {
       }
     };
 
-    const result = noRestrictedWordsRule.validate(options, schema);
+    const failures = noRestrictedWordsRule.validate(options, schema);
 
-    assert.isDefined(result.get('description'));
-    assert.equal(result.get('failures').size, 0);
+    assert.equal(failures.size, 0);
   });
 
   it('should report lots of errors when schema has a few restricted words', () => {
@@ -91,23 +89,22 @@ describe('no-restricted-words', () => {
       }
     };
 
-    const result = noRestrictedWordsRule.validate(options, schema);
+    const failures = noRestrictedWordsRule.validate(options, schema);
 
-    assert.isDefined(result.get('description'));
-    assert.equal(result.get('failures').size, 10);
+    assert.equal(failures.size, 10);
 
-    assert.equal(result.get('failures').get(0).get('location'), 'info.title');
-    assert.equal(result.get('failures').get(0).get('hint'), '');
-    assert.equal(result.get('failures').get(1).get('location'), 'info.description');
-    assert.equal(result.get('failures').get(1).get('hint'), '');
-    assert.equal(result.get('failures').get(2).get('location'), 'paths./pets.get.description');
-    assert.equal(result.get('failures').get(2).get('hint'), '');
-    assert.equal(result.get('failures').get(3).get('location'), 'paths./pets.get.summary');
-    assert.equal(result.get('failures').get(3).get('hint'), '');
-    assert.equal(result.get('failures').get(4).get('location'), 'paths./pets.get.parameters[0].description');
-    assert.equal(result.get('failures').get(4).get('hint'), '');
-    assert.equal(result.get('failures').get(5).get('location'), 'paths./pets.get.responses.200.description');
-    assert.equal(result.get('failures').get(5).get('hint'), '');
+    assert.equal(failures.get(0).get('location'), 'info.title');
+    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(1).get('location'), 'info.description');
+    assert.equal(failures.get(1).get('hint'), '');
+    assert.equal(failures.get(2).get('location'), 'paths./pets.get.description');
+    assert.equal(failures.get(2).get('hint'), '');
+    assert.equal(failures.get(3).get('location'), 'paths./pets.get.summary');
+    assert.equal(failures.get(3).get('hint'), '');
+    assert.equal(failures.get(4).get('location'), 'paths./pets.get.parameters[0].description');
+    assert.equal(failures.get(4).get('hint'), '');
+    assert.equal(failures.get(5).get('location'), 'paths./pets.get.responses.200.description');
+    assert.equal(failures.get(5).get('hint'), '');
   });
 
   it('should report error when info.title has restricted words', () => {
@@ -117,13 +114,12 @@ describe('no-restricted-words', () => {
       }
     };
 
-    const result = noRestrictedWordsRule.validate(options, schema);
+    const failures = noRestrictedWordsRule.validate(options, schema);
 
-    assert.isDefined(result.get('description'));
-    assert.equal(result.get('failures').size, 1);
+    assert.equal(failures.size, 1);
 
-    assert.equal(result.get('failures').get(0).get('location'), 'info.title');
-    assert.equal(result.get('failures').get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('location'), 'info.title');
+    assert.equal(failures.get(0).get('hint'), '');
   });
 
   it('should report error when info.description has restricted words', () => {
@@ -133,13 +129,12 @@ describe('no-restricted-words', () => {
       }
     };
 
-    const result = noRestrictedWordsRule.validate(options, schema);
+    const failures = noRestrictedWordsRule.validate(options, schema);
 
-    assert.isDefined(result.get('description'));
-    assert.equal(result.get('failures').size, 1);
+    assert.equal(failures.size, 1);
 
-    assert.equal(result.get('failures').get(0).get('location'), 'info.description');
-    assert.equal(result.get('failures').get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('location'), 'info.description');
+    assert.equal(failures.get(0).get('hint'), '');
   });
 
   it('should report error when an operation summary has restricted words', () => {
@@ -153,13 +148,12 @@ describe('no-restricted-words', () => {
       }
     };
 
-    const result = noRestrictedWordsRule.validate(options, schema);
+    const failures = noRestrictedWordsRule.validate(options, schema);
 
-    assert.isDefined(result.get('description'));
-    assert.equal(result.get('failures').size, 1);
+    assert.equal(failures.size, 1);
 
-    assert.equal(result.get('failures').get(0).get('location'), 'paths./pets.get.summary');
-    assert.equal(result.get('failures').get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('location'), 'paths./pets.get.summary');
+    assert.equal(failures.get(0).get('hint'), '');
   });
 
   it('should report error when an operation description has restricted words', () => {
@@ -173,13 +167,12 @@ describe('no-restricted-words', () => {
       }
     };
 
-    const result = noRestrictedWordsRule.validate(options, schema);
+    const failures = noRestrictedWordsRule.validate(options, schema);
 
-    assert.isDefined(result.get('description'));
-    assert.equal(result.get('failures').size, 1);
+    assert.equal(failures.size, 1);
 
-    assert.equal(result.get('failures').get(0).get('location'), 'paths./pets.get.description');
-    assert.equal(result.get('failures').get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('location'), 'paths./pets.get.description');
+    assert.equal(failures.get(0).get('hint'), '');
   });
 
   it('should report error when a parameter description has restricted words', () => {
@@ -197,13 +190,12 @@ describe('no-restricted-words', () => {
       }
     };
 
-    const result = noRestrictedWordsRule.validate(options, schema);
+    const failures = noRestrictedWordsRule.validate(options, schema);
 
-    assert.isDefined(result.get('description'));
-    assert.equal(result.get('failures').size, 1);
+    assert.equal(failures.size, 1);
 
-    assert.equal(result.get('failures').get(0).get('location'), 'paths./pets.get.parameters[0].description');
-    assert.equal(result.get('failures').get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('location'), 'paths./pets.get.parameters[0].description');
+    assert.equal(failures.get(0).get('hint'), '');
   });
 
   it('should report error when a response description has restricted words', () => {
@@ -221,12 +213,11 @@ describe('no-restricted-words', () => {
       }
     };
 
-    const result = noRestrictedWordsRule.validate(options, schema);
+    const failures = noRestrictedWordsRule.validate(options, schema);
 
-    assert.isDefined(result.get('description'));
-    assert.equal(result.get('failures').size, 1);
+    assert.equal(failures.size, 1);
 
-    assert.equal(result.get('failures').get(0).get('location'), 'paths./pets.get.responses.200.description');
-    assert.equal(result.get('failures').get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('location'), 'paths./pets.get.responses.200.description');
+    assert.equal(failures.get(0).get('hint'), '');
   });
 });

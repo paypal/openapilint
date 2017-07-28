@@ -34,6 +34,7 @@ describe('OpenApiLint', () => {
 
     return result.then((lintResult) => {
       expect(lintResult.size).to.equal(1);
+      expect(lintResult.get('no-restricted-words').get('description')).to.be.not.undefined;
       expect(lintResult.get('no-restricted-words').get('failures').size).to.equal(0);
     });
   });
@@ -55,6 +56,7 @@ describe('OpenApiLint', () => {
 
     return result.then((lintResult) => {
       expect(lintResult.size).to.equal(1);
+      expect(lintResult.get('no-restricted-words').get('description')).to.be.not.undefined;
       expect(lintResult.get('no-restricted-words').get('failures').size).to.equal(1);
       expect(lintResult.get('no-restricted-words').get('failures').get(0).get('location')).to.equal('info.description');
     });

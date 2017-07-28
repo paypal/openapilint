@@ -6,16 +6,6 @@ const docsPathRule = require('../../../lib/rules/docs-path');
 describe('docs-path', () => {
   const options = true;
 
-  it('should not report errors when not enabled', () => {
-    const schema = {};
-
-    const result = docsPathRule.validate(false, schema);
-
-    assert.isDefined(result.get('description'));
-    assert.equal(result.get('failures').size, 0);
-  });
-
-
   it('should not report errors when x-docPath is present', () => {
     const schema = {
       info: {
@@ -23,10 +13,9 @@ describe('docs-path', () => {
       }
     };
 
-    const result = docsPathRule.validate(options, schema);
+    const failures = docsPathRule.validate(options, schema);
 
-    assert.isDefined(result.get('description'));
-    assert.equal(result.get('failures').size, 0);
+    assert.equal(failures.size, 0);
   });
 
   it('should report error when x-docPath is not present', () => {
@@ -35,13 +24,12 @@ describe('docs-path', () => {
       }
     };
 
-    const result = docsPathRule.validate(options, schema);
+    const failures = docsPathRule.validate(options, schema);
 
-    assert.isDefined(result.get('description'));
-    assert.equal(result.get('failures').size, 1);
+    assert.equal(failures.size, 1);
 
-    assert.equal(result.get('failures').get(0).get('location'), 'info');
-    assert.equal(result.get('failures').get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('location'), 'info');
+    assert.equal(failures.get(0).get('hint'), '');
   });
 
   it('should report error when x-docPath is not well formed', () => {
@@ -51,11 +39,10 @@ describe('docs-path', () => {
       }
     };
 
-    const result = docsPathRule.validate(options, schema);
+    const failures = docsPathRule.validate(options, schema);
 
-    assert.isDefined(result.get('description'));
-    assert.equal(result.get('failures').size, 1);
-    assert.equal(result.get('failures').get(0).get('location'), 'info.x-docPath');
-    assert.equal(result.get('failures').get(0).get('hint'), '');
+    assert.equal(failures.size, 1);
+    assert.equal(failures.get(0).get('location'), 'info.x-docPath');
+    assert.equal(failures.get(0).get('hint'), '');
   });
 });
