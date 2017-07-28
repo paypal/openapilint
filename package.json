@@ -12,7 +12,7 @@
     "node": ">=4.2"
   },
   "scripts": {
-    "test": "mocha --check-leaks --recursive --reporter spec test/unit",
+    "test": "mocha --check-leaks --recursive --reporter spec test",
     "lint": "eslint *.js ./lib ./test"
   },
   "files": [
