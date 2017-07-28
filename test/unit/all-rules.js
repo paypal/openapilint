@@ -4,17 +4,17 @@ const fs = require('fs');
 const path = require('path');
 
 const RuleFailureList = require('../../lib/RuleFailureList');
-const List = require('immutable').List
+const List = require('immutable').List;
 
 const rulesPath = 'lib/rules';
 
 describe('all-rules', () => {
   it('should have common attributes', (done) => {
-    fs.readdir(rulesPath, function(err, items) {
+    fs.readdir(rulesPath, (err, items) => {
       assert.isNull(err);
       assert.isTrue(items.length > 0);
-   
-      items.forEach(function(element) {
+
+      items.forEach((element) => {
         const requiredName = path.parse(element).name;
         const rule = require(`../../${rulesPath}/${requiredName}`);
 
