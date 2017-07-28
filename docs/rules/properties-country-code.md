@@ -4,22 +4,22 @@ Validates that properties with the word `country` are named `country_code`, or e
 
 ## Examples of *correct* usage
 
-```
+```json
 {
-  TODO
+  "TODO"
 }
 ```
 
 ## Examples of **incorrect** usage
 
-```
+```json
 {
-  TODO
+  "TODO"
 }
 ```
 
-```
+```json
 {
-  TODO
+  "TODO"
 }
 ```

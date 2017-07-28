@@ -4,7 +4,7 @@ Validates that the the `PUT` request payload matches the `GET` `200` response.
 
 ## Examples of *correct* request/responses
 
-```
+```json
 {
   "paths": {
     "/pets": {
@@ -18,7 +18,9 @@ Validates that the the `PUT` request payload matches the `GET` `200` response.
                 "$ref": "#/definitions/pet"
               }
             }
-      ...
+          }
+        }
+      },
 
       "put": {
         "parameters": [
@@ -33,14 +35,17 @@ Validates that the the `PUT` request payload matches the `GET` `200` response.
               }
             }
           }
-      ...
+        ]
+      }
+    }
+  }
 }
 ```
 
 ## Examples of **incorrect** request/responses
 
 
-```
+```json
 {
   "paths": {
     "/pets": {
@@ -54,7 +59,9 @@ Validates that the the `PUT` request payload matches the `GET` `200` response.
                 "$ref": "#/definitions/pet"
               }
             }
-      ...
+          }
+        }
+      },
 
       "put": {
         "parameters": [
@@ -69,6 +76,9 @@ Validates that the the `PUT` request payload matches the `GET` `200` response.
               }
             }
           }
-      ...
+        ]
+      }
+    }
+  }
 }
 ```

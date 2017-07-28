@@ -4,7 +4,7 @@ Validates that the `info.x-docPath` is present, and well formed.  `x-docPath` MU
 
 ## Examples of *correct* usage
 
-```
+```json
 {
   "info": {
     "x-docPath": "myApiPath"
@@ -14,7 +14,7 @@ Validates that the `info.x-docPath` is present, and well formed.  `x-docPath` MU
 
 ## Examples of **incorrect** usage
 
-```
+```json
 {
   "info": {
     "x-docPath": "my invalid #path"
@@ -22,7 +22,7 @@ Validates that the `info.x-docPath` is present, and well formed.  `x-docPath` MU
 }
 ```
 
-```
+```json
 {
   "info": {
   }

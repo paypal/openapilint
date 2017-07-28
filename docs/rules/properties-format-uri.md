@@ -4,22 +4,22 @@ Validates that any properties with `url` or `uri` in the name include `{"format"
 
 ## Examples of *correct* usage
 
-```
+```json
 {
-  TODO
+  "TODO"
 }
 ```
 
 ## Examples of **incorrect** usage
 
-```
+```json
 {
-  TODO
+  "TODO"
 }
 ```
 
-```
+```json
 {
-  TODO
+  "TODO"
 }
 ```

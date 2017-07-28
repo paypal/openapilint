@@ -2,7 +2,7 @@ const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 
 const OpenApiLint = require('../../lib/OpenApiLint');
-const Map = require('immutable').Map
+const Map = require('immutable').Map;
 
 const expect = chai.expect;
 chai.use(chaiAsPromised);

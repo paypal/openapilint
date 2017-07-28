@@ -4,7 +4,7 @@ Validates that the `tags` is present and non-empty.
 
 ## Examples of *correct* usage
 
-```
+```json
 {
   "tags": [
     {
@@ -19,13 +19,13 @@ Validates that the `tags` is present and non-empty.
 
 ## Examples of **incorrect** usage
 
-```
+```json
 {
   "tags": []
 }
 ```
 
-```
+```json
 {
 }
 ```

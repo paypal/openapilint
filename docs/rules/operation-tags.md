@@ -4,13 +4,12 @@ Validates that all operations have a non-empty `tags` array.
 
 ## Examples of *correct* usage
 
-```
+```json
 {
   "paths": {
     "/pets": {
       "get": {
-        tags: ["pet"]
-        ...
+        "tags": ["pet"]
       }
     }
   }
@@ -20,25 +19,23 @@ Validates that all operations have a non-empty `tags` array.
 
 ## Examples of **incorrect** usage
 
-```
+```json
 {
   "paths": {
     "/pets": {
       "get": {
-        tags: []
-        ...
+        "tags": []
       }
     }
   }
 }
 ```
 
-```
+```json
 {
   "paths": {
     "/pets": {
       "get": {
-        ...
       }
     }
   }

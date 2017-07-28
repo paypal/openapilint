@@ -4,7 +4,7 @@ Validates that the sum of the parameters with {"location": "path"} matches the n
 
 ## Examples of *correct* usage
 
-```
+```json
 {
   "paths": {
     "first/{id}": {
@@ -74,7 +74,7 @@ Validates that the sum of the parameters with {"location": "path"} matches the n
 ```
 
 ## Examples of **incorrect** usage
-
+```json
 {
   "paths": {
     "first/{id}": {
@@ -117,4 +117,4 @@ Validates that the sum of the parameters with {"location": "path"} matches the n
     }
   }
 }
-
+```

@@ -4,7 +4,7 @@ Validates that any operation `tags` are present in root level `tags`
 
 ## Examples of *correct* usage
 
-```
+```json
 {
   "tags": [
     {
@@ -14,8 +14,7 @@ Validates that any operation `tags` are present in root level `tags`
   "paths": {
     "/pets": {
       "get": {
-        tags: ["pet"]
-        ...
+        "tags": ["pet"]
       }
     }
   }
@@ -24,7 +23,7 @@ Validates that any operation `tags` are present in root level `tags`
 
 ## Examples of **incorrect** usage
 
-```
+```json
 {
   "tags": [
     {
@@ -34,8 +33,7 @@ Validates that any operation `tags` are present in root level `tags`
   "paths": {
     "/pets": {
       "get": {
-        tags: ["pet"]
-        ...
+        "tags": ["pet"]
       }
     }
   }

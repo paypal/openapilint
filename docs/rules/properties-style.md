@@ -4,22 +4,22 @@ Validates that all properties' keys are `snake_case` style.
 
 ## Examples of *correct* usage
 
-```
+```json
 {
-  TODO
+  "TODO"
 }
 ```
 
 ## Examples of **incorrect** usage
 
-```
+```json
 {
-  TODO
+  "TODO"
 }
 ```
 
-```
+```json
 {
-  TODO
+  "TODO"
 }
 ```

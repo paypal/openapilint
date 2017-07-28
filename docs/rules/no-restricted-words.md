@@ -4,16 +4,12 @@ Validates that title, summary, or description do not contain restricted strings.
 
 ## Examples of *correct* usage given the config: `{"words": ["My Deprecated Brand", "SUPERSECRETACRONYM"]}`
 
-```
+```json
 {
 	"info": {
 		"title": "Sample title",
 		"description": "Sample description"
-		...
-	} 
-
-	...
-
+	},
 	"paths": {
     "/pets": {
       "get": {
@@ -22,27 +18,30 @@ Validates that title, summary, or description do not contain restricted strings.
           {
             "name": "limit",
             "description": "Sample param description",
-            ...
           }
         ],
         "responses": {
           "200": {
-            "description": "sample response",
-            ...
+            "description": "sample response"
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
 ## Examples of *incorrect* usage given the config: `{"words": ["My Deprecated Brand", "SUPERSECRETACRONYM"]}`
-```
+```json
 {
 	"info": {
 		"title": "my deprecated brand",
 		"description": "supersecretacronym"
-		...
+  }
 }
 ```
 
-```
+```json
 {
 	"paths": {
     "/pets": {
@@ -51,13 +50,16 @@ Validates that title, summary, or description do not contain restricted strings.
         "parameters": [
           {
             "name": "limit",
-            "description": "Sample param description for supersecretacronym",
-            ...
+            "description": "Sample param description for supersecretacronym"
           }
         ],
         "responses": {
           "200": {
             "description": "sample response for my deprecated brand",
-            ...
+          }
+        }
+      }
+    }
+  }
 }
 ```
