@@ -4,3 +4,4 @@ test/*
 .eslintrc.json
 .nvmrc
 .npmignore
+npm-debug.log
