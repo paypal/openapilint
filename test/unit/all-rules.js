@@ -3,7 +3,6 @@ const assert = require('chai').assert;
 const fs = require('fs');
 const path = require('path');
 
-const RuleFailureList = require('../../lib/RuleFailureList');
 const List = require('immutable').List;
 
 const rulesPath = 'lib/rules';
@@ -24,7 +23,7 @@ describe('all-rules', () => {
 
         // validating a rule should return a failure list
         const result = rule.validate({}, {});
-        assert.isTrue(result instanceof List, `${requiredName} returned a ${result}`);
+        assert.isTrue(result instanceof List, `${requiredName} returned a ${result} instead of a List`);
       });
 
       done();

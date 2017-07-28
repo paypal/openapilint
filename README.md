@@ -35,16 +35,15 @@ and returns a promise of the results:
 const result = new OpenApiLint(config).lint(schema);
 
 return result.then((lintResult) => {
-  // Do something with the LintResult object.
+  // Do something with the result Map.
 }).catch((error) => {
   // Do something with the Error.
 });
 ```
 
-`LintResult` is a `String -> RuleResult` [immutable Map](http://facebook.github.io/immutable-js/docs/#/Map) of nested immutable objects for consumption.  Specifically:
+`lintResult` is a `String -> RuleResult` [immutable Map](http://facebook.github.io/immutable-js/docs/#/Map) of nested immutable objects for consumption.  Specifically:
 
-* `RuleResult` is a `String -> Object` [immutable Record](http://facebook.github.io/immutable-js/docs/#/Record) with two keys, `description` (`String`) & `failures` (`RuleFailureList`).
-* `RuleFailureList` is a `RuleFailure` [immutable List](http://facebook.github.io/immutable-js/docs/#/List).
+* `RuleResult` is a `String -> Object` [immutable Record](http://facebook.github.io/immutable-js/docs/#/Record) with two keys, `description` (`String`) & `failures` (`List<RuleFailure>`).
 * `RuleFailure` is a `String -> String` [immutable Record](http://facebook.github.io/immutable-js/docs/#/Record) with two keys, `location` (`String`) & `hint` (`String`)
 
 It is up to the implementer to parse this data and provide a useful error response to the user.
