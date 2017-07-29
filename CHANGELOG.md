@@ -5,6 +5,7 @@ openapilint release notes
 -----
 * Remove some unhelpful classes from response objects.
 * Add implementation of `operation-tags`.
+* Add implementation of `tags-ref`.
 
 0.1.1
 -----

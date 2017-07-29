@@ -1,4 +1,4 @@
-# enforce operation `tags` are present in root level `tags` (docs-path)
+# enforce operation `tags` are present in root level `tags` (tags-ref)
 
 Validates that any operation `tags` are present in root level `tags`
 
