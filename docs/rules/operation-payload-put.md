@@ -1,4 +1,4 @@
-# enforce the `PUT` request payload matches the `GET` `200` response (operation-payload-match)
+# enforce the `PUT` request payload matches the `GET` `200` response (operation-payload-put)
 
 Validates that the the `PUT` request payload matches the `GET` `200` response.
 
@@ -21,7 +21,6 @@ Validates that the the `PUT` request payload matches the `GET` `200` response.
           }
         }
       },
-
       "put": {
         "parameters": [
           {
@@ -62,7 +61,6 @@ Validates that the the `PUT` request payload matches the `GET` `200` response.
           }
         }
       },
-
       "put": {
         "parameters": [
           {
