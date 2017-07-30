@@ -1,7 +1,7 @@
 'use strict';
 
 const assert = require('chai').assert;
-const rootTagsRule = require('../../../lib/rules/operation-tags');
+const operationTagsRule = require('../../../lib/rules/operation-tags');
 
 describe('operation-tags', () => {
   const options = true;
@@ -25,7 +25,7 @@ describe('operation-tags', () => {
       }
     };
 
-    const failures = rootTagsRule.validate(options, schema);
+    const failures = operationTagsRule.validate(options, schema);
 
     assert.equal(failures.size, 0);
     done();
@@ -41,7 +41,7 @@ describe('operation-tags', () => {
       }
     };
 
-    const failures = rootTagsRule.validate(options, schema);
+    const failures = operationTagsRule.validate(options, schema);
 
     assert.equal(failures.size, 1);
     assert.equal(failures.get(0).get('location'), 'paths./pets.get');
@@ -60,7 +60,7 @@ describe('operation-tags', () => {
       }
     };
 
-    const failures = rootTagsRule.validate(options, schema);
+    const failures = operationTagsRule.validate(options, schema);
 
     assert.equal(failures.size, 1);
     assert.equal(failures.get(0).get('location'), 'paths./pets.get.tags');
