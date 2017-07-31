@@ -1,4 +1,8 @@
 language: node_js
+notifications:
+  email:
+    - external-ci-notifications+openapilint@getbraintree.com
+
 node_js:
     - "4"
     - "5"
