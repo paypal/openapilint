@@ -1,13 +1,13 @@
-# enforce existence and well formed `x-docsPath` (docs-path)
+# enforce existence and well formed `x-publicDocsPath` (docs-path)
 
-Validates that the `info.x-docPath` is present, and well formed.  `x-docPath` MUST only contain alpha characters for use when creating developer documentation using a docs engine.
+Validates that the `info.x-publicDocsPath` is present, and well formed.  `x-publicDocsPath` MUST only contain alpha characters for use when creating developer documentation using a docs engine.
 
 ## Examples of *correct* usage
 
 ```json
 {
   "info": {
-    "x-docPath": "myApiPath"
+    "x-publicDocsPath": "myApiPath"
   }
 }
 ```
@@ -17,7 +17,7 @@ Validates that the `info.x-docPath` is present, and well formed.  `x-docPath` MU
 ```json
 {
   "info": {
-    "x-docPath": "my invalid #path"
+    "x-publicDocsPath": "my invalid #path"
   }
 }
 ```

@@ -6,6 +6,7 @@ openapilint release notes
 * Remove some unhelpful classes from response objects.
 * Add implementation of `operation-tags`.
 * Add implementation of `tags-ref`.
+* Rename `docs-path` to validate `info.x-publicDocsPath` instead of `info.x-docsPath`.
 
 0.1.1
 -----

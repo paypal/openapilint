@@ -6,10 +6,10 @@ const docsPathRule = require('../../../lib/rules/docs-path');
 describe('docs-path', () => {
   const options = true;
 
-  it('should not report errors when x-docPath is present', () => {
+  it('should not report errors when x-publicDocsPath is present', () => {
     const schema = {
       info: {
-        'x-docPath': 'myApiPath'
+        'x-publicDocsPath': 'myApiPath'
       }
     };
 
@@ -18,7 +18,7 @@ describe('docs-path', () => {
     assert.equal(failures.size, 0);
   });
 
-  it('should report error when x-docPath is not present', () => {
+  it('should report error when x-publicDocsPath is not present', () => {
     const schema = {
       info: {
       }
@@ -32,17 +32,17 @@ describe('docs-path', () => {
     assert.equal(failures.get(0).get('hint'), '');
   });
 
-  it('should report error when x-docPath is not well formed', () => {
+  it('should report error when x-publicDocsPath is not well formed', () => {
     const schema = {
       info: {
-        'x-docPath': 'my invalid #path'
+        'x-publicDocsPath': 'my invalid #path'
       }
     };
 
     const failures = docsPathRule.validate(options, schema);
 
     assert.equal(failures.size, 1);
-    assert.equal(failures.get(0).get('location'), 'info.x-docPath');
+    assert.equal(failures.get(0).get('location'), 'info.x-publicDocsPath');
     assert.equal(failures.get(0).get('hint'), '');
   });
 });
