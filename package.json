@@ -1,6 +1,6 @@
 {
   "name": "openapilint",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Node.js linter for OpenAPI specs",
   "repository": {
     "type": "git",
