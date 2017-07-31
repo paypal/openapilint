@@ -1,6 +1,10 @@
 openapilint release notes
 ============================
 
+0.2.1
+-----
+* Fix bug where a path `parameters` object was being treated like an operation.
+
 0.2.0
 -----
 * Remove some unhelpful classes from response objects.

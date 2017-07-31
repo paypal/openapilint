@@ -29,7 +29,8 @@ describe('operation-payload-put', () => {
               }
             }
           ]
-        }
+        },
+        parameters: []
       }
     }
   };

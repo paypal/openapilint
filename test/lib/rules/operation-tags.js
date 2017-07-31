@@ -15,9 +15,11 @@ describe('operation-tags', () => {
           },
           put: {
             tags: ['pet']
-          }
+          },
+          parameters: []
         },
         '/people': {
+          parameters: [],
           get: {
             tags: ['person']
           }
