@@ -1,4 +1,4 @@
-# enforce existence and non-empty operation tags (operation-tags)
+# enforce present and non-empty operation `tags` array (operation-tags)
 
 Validates that all operations have a non-empty `tags` array.
 

@@ -1,4 +1,4 @@
-# enforce existence and well formed `x-publicDocsPath` (docs-path)
+# enforce present and well formed `x-publicDocsPath` (docs-path)
 
 Validates that the `info.x-publicDocsPath` is present, and well formed.  `x-publicDocsPath` MUST only contain alpha characters for use when creating developer documentation using a docs engine.
 

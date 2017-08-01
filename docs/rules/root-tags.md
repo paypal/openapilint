@@ -1,6 +1,6 @@
-# enforce non-empty `tags` array (root-tags)
+# enforce present and non-empty `tags` array (root-tags)
 
-Validates that the `tags` is present and non-empty.
+Validates that the `tags` array is present and non-empty.
 
 ## Examples of *correct* usage
 

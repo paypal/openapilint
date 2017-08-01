@@ -1,6 +1,6 @@
 # enforce operation `tags` are present in root level `tags` (tags-ref)
 
-Validates that any operation `tags` are present in root level `tags`
+Validates that any operation `tags` are present in root level `tags`.
 
 ## Examples of *correct* usage
 
