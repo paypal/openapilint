@@ -1,6 +1,10 @@
 openapilint release notes
 ============================
 
+0.3.0
+-----
+* Add implementation of `no-path-item-parameters`.
+
 0.2.1
 -----
 * Fix bug where a path `parameters` object was being treated like an operation.
