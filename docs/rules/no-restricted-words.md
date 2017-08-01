@@ -6,11 +6,11 @@ Validates that title, summary, or description do not contain restricted strings.
 
 ```json
 {
-	"info": {
-		"title": "Sample title",
-		"description": "Sample description"
-	},
-	"paths": {
+  "info": {
+    "title": "Sample title",
+    "description": "Sample description"
+  },
+  "paths": {
     "/pets": {
       "get": {
         "description": "Sample operation description",
@@ -34,16 +34,16 @@ Validates that title, summary, or description do not contain restricted strings.
 ## Examples of *incorrect* usage given the config: `{"words": ["My Deprecated Brand", "SUPERSECRETACRONYM"]}`
 ```json
 {
-	"info": {
-		"title": "my deprecated brand",
-		"description": "supersecretacronym"
+  "info": {
+    "title": "my deprecated brand",
+    "description": "supersecretacronym"
   }
 }
 ```
 
 ```json
 {
-	"paths": {
+  "paths": {
     "/pets": {
       "get": {
         "description": "Sample operation description of SUPERSECRETACRONYM",
