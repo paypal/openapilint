@@ -9,23 +9,23 @@ describe('operation-payload-put', () => {
 
   // validSchema is used as the base for all tests to make them easier to read.
   const validSchema = {
-    "paths": {
-      "/pets": {
-        "get": {
-          "responses": {
-            "200": {
-              "schema": {
-                "$ref": "#/definitions/pet"
+    paths: {
+      '/pets': {
+        get: {
+          responses: {
+            200: {
+              schema: {
+                $ref: '#/definitions/pet'
               }
             }
           }
         },
-        "put": {
-          "parameters": [
+        put: {
+          parameters: [
             {
-              "in": "body",
-              "schema": {
-                "$ref": "#/definitions/pet"
+              in: 'body',
+              schema: {
+                $ref: '#/definitions/pet'
               }
             }
           ]
@@ -44,7 +44,7 @@ describe('operation-payload-put', () => {
 
   it('should report error when valid put request body parameter does not match its valid get response', (done) => {
     const schema = _.cloneDeep(validSchema);
-    schema["paths"]["/pets"]["put"]["parameters"][0]["schema"]["$ref"] = "#/definitions/alligator";
+    schema.paths['/pets'].put.parameters[0].schema.$ref = '#/definitions/alligator';
 
     const failures = operationPayloadPutRule.validate(options, schema);
 
@@ -56,7 +56,7 @@ describe('operation-payload-put', () => {
 
   it('should report error when get 200 response is missing', (done) => {
     const schema = _.cloneDeep(validSchema);
-    schema["paths"]["/pets"]["get"]["responses"]["200"] = undefined;
+    schema.paths['/pets'].get.responses['200'] = undefined;
 
     const failures = operationPayloadPutRule.validate(options, schema);
 
@@ -68,7 +68,7 @@ describe('operation-payload-put', () => {
 
   it('should report error when get 200 schema is missing', (done) => {
     const schema = _.cloneDeep(validSchema);
-    schema["paths"]["/pets"]["get"]["responses"]["200"]["schema"] = undefined;
+    schema.paths['/pets'].get.responses['200'].schema = undefined;
 
     const failures = operationPayloadPutRule.validate(options, schema);
 
@@ -80,7 +80,7 @@ describe('operation-payload-put', () => {
 
   it('should report error when put parameters is missing', (done) => {
     const schema = _.cloneDeep(validSchema);
-    schema["paths"]["/pets"]["put"]["parameters"] = undefined;
+    schema.paths['/pets'].put.parameters = undefined;
 
     const failures = operationPayloadPutRule.validate(options, schema);
 
@@ -92,7 +92,7 @@ describe('operation-payload-put', () => {
 
   it('should report error when put parameters body is missing', (done) => {
     const schema = _.cloneDeep(validSchema);
-    schema["paths"]["/pets"]["put"]["parameters"] = [];
+    schema.paths['/pets'].put.parameters = [];
 
     const failures = operationPayloadPutRule.validate(options, schema);
 
@@ -104,7 +104,7 @@ describe('operation-payload-put', () => {
 
   it('should report error when put parameters body schema is missing', (done) => {
     const schema = _.cloneDeep(validSchema);
-    schema["paths"]["/pets"]["put"]["parameters"][0]["schema"] = undefined;
+    schema.paths['/pets'].put.parameters[0].schema = undefined;
 
     const failures = operationPayloadPutRule.validate(options, schema);
 
@@ -116,8 +116,8 @@ describe('operation-payload-put', () => {
 
   it('should report two errors when put and get are missing something', (done) => {
     const schema = _.cloneDeep(validSchema);
-    schema["paths"]["/pets"]["get"]["responses"]["200"] = undefined;
-    schema["paths"]["/pets"]["put"]["parameters"][0]["schema"] = undefined;
+    schema.paths['/pets'].get.responses['200'] = undefined;
+    schema.paths['/pets'].put.parameters[0].schema = undefined;
 
     const failures = operationPayloadPutRule.validate(options, schema);
 
@@ -131,8 +131,8 @@ describe('operation-payload-put', () => {
 
   it('should report two errors when put and get are missing other things', (done) => {
     const schema = _.cloneDeep(validSchema);
-    schema["paths"]["/pets"]["get"]["responses"]["200"]["schema"] = undefined;
-    schema["paths"]["/pets"]["put"]["parameters"] = [];
+    schema.paths['/pets'].get.responses['200'].schema = undefined;
+    schema.paths['/pets'].put.parameters = [];
 
     const failures = operationPayloadPutRule.validate(options, schema);
 
