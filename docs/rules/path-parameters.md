@@ -15,8 +15,7 @@ Validates that the sum of the parameters with {"location": "path"} matches the n
             "type": "string",
             "in": "path"
           }
-        ],
-        "operationId": "first.get"
+        ]
       }
     },
     "first/{first_id}/second/{id}": {
@@ -32,8 +31,7 @@ Validates that the sum of the parameters with {"location": "path"} matches the n
             "type": "string",
             "in": "path"
           }
-        ],
-        "operationId": "first.second.get"
+        ]
       }
     },
     "second/{customer_id}/details": {
