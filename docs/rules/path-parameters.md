@@ -1,6 +1,6 @@
 # enforce path parameter parity (path-parameters)
 
-Validates that the sum of the parameters with {"location": "path"} matches the number of path parameters in the URI.
+Validates that the sum of the parameters with {"location": "path"} matches the number of path template parameters in the URI.
 
 ## Examples of *correct* usage
 
