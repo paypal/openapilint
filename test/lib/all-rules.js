@@ -1,6 +1,7 @@
 const assert = require('chai').assert;
 const fs = require('fs');
 const path = require('path');
+const _ = require('lodash');
 
 const List = require('immutable').List;
 
@@ -11,7 +12,7 @@ describe('all-rules should have common attributes', () => {
     assert.isNull(err);
     assert.isTrue(items.length > 0);
 
-    items.forEach((element) => {
+    _.filter(items, (element) => { /\.js$/.test(element); }).forEach((element) => {
       const requiredName = path.parse(element).name;
       const rule = require(`../../${rulesPath}/${requiredName}`);
 
