@@ -3,6 +3,7 @@ openapilint release notes
 
 0.3.0
 -----
+* Add implementation of `no-inconsistent-param-visibility`.
 * Add implementation of `no-path-item-parameters`.
 * Add implementation of `path-parameters`.
 
