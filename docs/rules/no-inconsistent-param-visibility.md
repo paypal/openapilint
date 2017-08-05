@@ -12,7 +12,7 @@ The config for this rule consists of:
 * `selector`: json path, in array form, of the actual visibility values.  This allows visibility to be a more complex object property, rather than just a string.
 * `default`: the default visibility if not specified.
 
-## Examples of *correct* usage given config `{"orderedOptions": ["INTERNAL","LIMITED_RELEASE","EXTERNAL"], "Selector": ["x-visibility", "extent"], "default": "INTERNAL"}`
+## Examples of *correct* usage given config `{"orderedOptions": ["INTERNAL","LIMITED_RELEASE","EXTERNAL"], "selector": ["x-visibility", "extent"], "default": "INTERNAL"}`
 
 ```json
 {
@@ -45,7 +45,7 @@ The config for this rule consists of:
 }
 ```
 
-## Examples of **incorrect** usage given config `{"orderedOptions": ["INTERNAL","LIMITED_RELEASE","EXTERNAL"], "Selector": ["x-visibility", "extent"], "default": "INTERNAL"}`
+## Examples of **incorrect** usage given config `{"orderedOptions": ["INTERNAL","LIMITED_RELEASE","EXTERNAL"], "selector": ["x-visibility", "extent"], "default": "INTERNAL"}`
 ```json
 {
   "paths": {
