@@ -50,7 +50,7 @@ describe('operation-payload-put', () => {
 
     assert.equal(failures.size, 1);
     assert.equal(failures.get(0).get('location'), 'paths./pets.put.parameters[0].schema');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Does not match');
     done();
   });
 
@@ -62,7 +62,7 @@ describe('operation-payload-put', () => {
 
     assert.equal(failures.size, 1);
     assert.equal(failures.get(0).get('location'), 'paths./pets.get.responses.200');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Missing 200 response');
     done();
   });
 
@@ -74,7 +74,7 @@ describe('operation-payload-put', () => {
 
     assert.equal(failures.size, 1);
     assert.equal(failures.get(0).get('location'), 'paths./pets.get.responses.200.schema');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Missing 200 response schema');
     done();
   });
 
@@ -86,7 +86,7 @@ describe('operation-payload-put', () => {
 
     assert.equal(failures.size, 1);
     assert.equal(failures.get(0).get('location'), 'paths./pets.put.parameters');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Missing put parameters');
     done();
   });
 
@@ -98,7 +98,7 @@ describe('operation-payload-put', () => {
 
     assert.equal(failures.size, 1);
     assert.equal(failures.get(0).get('location'), 'paths./pets.put.parameters');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Missing put parameters body');
     done();
   });
 
@@ -110,7 +110,7 @@ describe('operation-payload-put', () => {
 
     assert.equal(failures.size, 1);
     assert.equal(failures.get(0).get('location'), 'paths./pets.put.parameters[0].schema');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Missing put parameters body schema');
     done();
   });
 
@@ -123,9 +123,9 @@ describe('operation-payload-put', () => {
 
     assert.equal(failures.size, 2);
     assert.equal(failures.get(0).get('location'), 'paths./pets.get.responses.200');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Missing 200 response');
     assert.equal(failures.get(1).get('location'), 'paths./pets.put.parameters[0].schema');
-    assert.equal(failures.get(1).get('hint'), '');
+    assert.equal(failures.get(1).get('hint'), 'Missing put parameters body schema');
     done();
   });
 
@@ -138,9 +138,9 @@ describe('operation-payload-put', () => {
 
     assert.equal(failures.size, 2);
     assert.equal(failures.get(0).get('location'), 'paths./pets.get.responses.200.schema');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Missing 200 response schema');
     assert.equal(failures.get(1).get('location'), 'paths./pets.put.parameters');
-    assert.equal(failures.get(1).get('hint'), '');
+    assert.equal(failures.get(1).get('hint'), 'Missing put parameters body');
     done();
   });
 });

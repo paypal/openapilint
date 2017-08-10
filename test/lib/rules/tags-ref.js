@@ -54,9 +54,9 @@ describe('tags-ref', () => {
 
     assert.equal(failures.size, 2);
     assert.equal(failures.get(0).get('location'), 'paths./pets.get.tags[2]');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Tag not found');
     assert.equal(failures.get(1).get('location'), 'paths./pets.put.tags[0]');
-    assert.equal(failures.get(1).get('hint'), '');
+    assert.equal(failures.get(1).get('hint'), 'Tag not found');
     done();
   });
 });

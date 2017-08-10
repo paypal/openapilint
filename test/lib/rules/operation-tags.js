@@ -47,7 +47,7 @@ describe('operation-tags', () => {
 
     assert.equal(failures.size, 1);
     assert.equal(failures.get(0).get('location'), 'paths./pets.get');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Missing tags');
     done();
   });
 
@@ -66,7 +66,7 @@ describe('operation-tags', () => {
 
     assert.equal(failures.size, 1);
     assert.equal(failures.get(0).get('location'), 'paths./pets.get.tags');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Empty tags');
     done();
   });
 });

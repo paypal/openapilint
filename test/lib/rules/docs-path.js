@@ -29,7 +29,7 @@ describe('docs-path', () => {
     assert.equal(failures.size, 1);
 
     assert.equal(failures.get(0).get('location'), 'info');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Missing');
   });
 
   it('should report error when x-publicDocsPath is not well formed', () => {
@@ -43,6 +43,6 @@ describe('docs-path', () => {
 
     assert.equal(failures.size, 1);
     assert.equal(failures.get(0).get('location'), 'info.x-publicDocsPath');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Not a valid path');
   });
 });

@@ -26,7 +26,7 @@ describe('root-tags', () => {
 
     assert.equal(failures.size, 1);
     assert.equal(failures.get(0).get('location'), 'tags');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Missing tags');
   });
 
   it('should report error when tags is empty', () => {
@@ -38,6 +38,6 @@ describe('root-tags', () => {
 
     assert.equal(failures.size, 1);
     assert.equal(failures.get(0).get('location'), 'tags');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Empty tags');
   });
 });

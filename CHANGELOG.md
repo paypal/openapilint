@@ -1,6 +1,11 @@
 openapilint release notes
 ============================
 
+0.4.0
+-----
+* Add hints to all rules.
+* Add `schema` object validation to `no-restricted-words`.
+
 0.3.0
 -----
 * Add implementation of `no-inconsistent-param-visibility`.

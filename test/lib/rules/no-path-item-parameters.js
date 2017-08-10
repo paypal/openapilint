@@ -48,9 +48,9 @@ describe('no-path-item-parameters', () => {
 
     assert.equal(failures.size, 2);
     assert.equal(failures.get(0).get('location'), 'paths./pets.parameters');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Found parameters');
     assert.equal(failures.get(1).get('location'), 'paths./people.parameters');
-    assert.equal(failures.get(1).get('hint'), '');
+    assert.equal(failures.get(1).get('hint'), 'Found parameters');
     done();
   });
 });
