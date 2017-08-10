@@ -220,4 +220,117 @@ describe('no-restricted-words', () => {
     assert.equal(failures.get(0).get('location'), 'paths./pets.get.responses.200.description');
     assert.equal(failures.get(0).get('hint'), '');
   });
+
+  it('should report error when a schema object description has restricted words', () => {
+    const schema = {
+      paths: {
+        '/pets': {
+          get: {
+            responses: {
+              200: {
+                schema: {
+                  description: 'restricted'
+                }
+              }
+            }
+          }
+        }
+      }
+    };
+
+    const failures = noRestrictedWordsRule.validate(options, schema);
+
+    assert.equal(failures.size, 1);
+
+    assert.equal(failures.get(0).get('location'), 'paths./pets.get.responses.200.schema.description');
+    assert.equal(failures.get(0).get('hint'), '');
+  });
+
+
+  it('should report error when a schema items description has restricted words', () => {
+    const schema = {
+      paths: {
+        '/pets': {
+          get: {
+            responses: {
+              200: {
+                schema: {
+                  items: {
+                    description: 'restricted'
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    };
+
+    const failures = noRestrictedWordsRule.validate(options, schema);
+
+    assert.equal(failures.size, 1);
+
+    assert.equal(failures.get(0).get('location'), 'paths./pets.get.responses.200.schema.items.description');
+    assert.equal(failures.get(0).get('hint'), '');
+  });
+
+  it('should report error when a schema property description has restricted words', () => {
+    const schema = {
+      paths: {
+        '/pets': {
+          get: {
+            responses: {
+              200: {
+                schema: {
+                  properties: {
+                    petType: {
+                      description: 'restricted'
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    };
+
+    const failures = noRestrictedWordsRule.validate(options, schema);
+
+    assert.equal(failures.size, 1);
+
+    assert.equal(failures.get(0).get('location'), 'paths./pets.get.responses.200.schema.properties.petType.description');
+    assert.equal(failures.get(0).get('hint'), '');
+  });
+
+
+  it('should report error when a body request property description has restricted words', () => {
+    const schema = {
+      paths: {
+        '/pets': {
+          get: {
+            parameters: [
+              {
+                in: 'body',
+                schema: {
+                  properties: {
+                    petType: {
+                      description: 'restricted'
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    };
+
+    const failures = noRestrictedWordsRule.validate(options, schema);
+
+    assert.equal(failures.size, 1);
+
+    assert.equal(failures.get(0).get('location'), 'paths./pets.get.parameters[0].schema.properties.petType.description');
+    assert.equal(failures.get(0).get('hint'), '');
+  });
 });
