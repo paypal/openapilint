@@ -48,7 +48,7 @@ describe('no-restricted-words', () => {
   it('should report lots of errors when schema has a few restricted words', () => {
     const schema = {
       info: {
-        title: 'restricted',
+        title: 'restricted blah-blah',
         description: 'restricted'
       },
       paths: {
@@ -91,20 +91,22 @@ describe('no-restricted-words', () => {
 
     const failures = noRestrictedWordsRule.validate(options, schema);
 
-    assert.equal(failures.size, 10);
+    assert.equal(failures.size, 11);
 
     assert.equal(failures.get(0).get('location'), 'info.title');
-    assert.equal(failures.get(0).get('hint'), '');
-    assert.equal(failures.get(1).get('location'), 'info.description');
-    assert.equal(failures.get(1).get('hint'), '');
-    assert.equal(failures.get(2).get('location'), 'paths./pets.get.description');
-    assert.equal(failures.get(2).get('hint'), '');
-    assert.equal(failures.get(3).get('location'), 'paths./pets.get.summary');
-    assert.equal(failures.get(3).get('hint'), '');
-    assert.equal(failures.get(4).get('location'), 'paths./pets.get.parameters[0].description');
-    assert.equal(failures.get(4).get('hint'), '');
-    assert.equal(failures.get(5).get('location'), 'paths./pets.get.responses.200.description');
-    assert.equal(failures.get(5).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Found \'blah-blah\'');
+    assert.equal(failures.get(1).get('location'), 'info.title');
+    assert.equal(failures.get(1).get('hint'), 'Found \'restricted\'');
+    assert.equal(failures.get(2).get('location'), 'info.description');
+    assert.equal(failures.get(2).get('hint'), 'Found \'restricted\'');
+    assert.equal(failures.get(3).get('location'), 'paths./pets.get.description');
+    assert.equal(failures.get(3).get('hint'), 'Found \'restricted\'');
+    assert.equal(failures.get(4).get('location'), 'paths./pets.get.summary');
+    assert.equal(failures.get(4).get('hint'), 'Found \'restricted\'');
+    assert.equal(failures.get(5).get('location'), 'paths./pets.get.parameters[0].description');
+    assert.equal(failures.get(5).get('hint'), 'Found \'restricted\'');
+    assert.equal(failures.get(6).get('location'), 'paths./pets.get.responses.200.description');
+    assert.equal(failures.get(6).get('hint'), 'Found \'restricted\'');
   });
 
   it('should report error when info.title has restricted words', () => {
@@ -119,7 +121,7 @@ describe('no-restricted-words', () => {
     assert.equal(failures.size, 1);
 
     assert.equal(failures.get(0).get('location'), 'info.title');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Found \'restricted\'');
   });
 
   it('should report error when info.description has restricted words', () => {
@@ -134,7 +136,7 @@ describe('no-restricted-words', () => {
     assert.equal(failures.size, 1);
 
     assert.equal(failures.get(0).get('location'), 'info.description');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Found \'restricted\'');
   });
 
   it('should report error when an operation summary has restricted words', () => {
@@ -153,7 +155,7 @@ describe('no-restricted-words', () => {
     assert.equal(failures.size, 1);
 
     assert.equal(failures.get(0).get('location'), 'paths./pets.get.summary');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Found \'restricted\'');
   });
 
   it('should report error when an operation description has restricted words', () => {
@@ -172,7 +174,7 @@ describe('no-restricted-words', () => {
     assert.equal(failures.size, 1);
 
     assert.equal(failures.get(0).get('location'), 'paths./pets.get.description');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Found \'restricted\'');
   });
 
   it('should report error when a parameter description has restricted words', () => {
@@ -195,7 +197,7 @@ describe('no-restricted-words', () => {
     assert.equal(failures.size, 1);
 
     assert.equal(failures.get(0).get('location'), 'paths./pets.get.parameters[0].description');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Found \'restricted\'');
   });
 
   it('should report error when a response description has restricted words', () => {
@@ -218,7 +220,7 @@ describe('no-restricted-words', () => {
     assert.equal(failures.size, 1);
 
     assert.equal(failures.get(0).get('location'), 'paths./pets.get.responses.200.description');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Found \'restricted\'');
   });
 
   it('should report error when a schema object description has restricted words', () => {
@@ -243,7 +245,7 @@ describe('no-restricted-words', () => {
     assert.equal(failures.size, 1);
 
     assert.equal(failures.get(0).get('location'), 'paths./pets.get.responses.200.schema.description');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Found \'restricted\'');
   });
 
 
@@ -271,7 +273,7 @@ describe('no-restricted-words', () => {
     assert.equal(failures.size, 1);
 
     assert.equal(failures.get(0).get('location'), 'paths./pets.get.responses.200.schema.items.description');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Found \'restricted\'');
   });
 
   it('should report error when a schema property description has restricted words', () => {
@@ -300,7 +302,7 @@ describe('no-restricted-words', () => {
     assert.equal(failures.size, 1);
 
     assert.equal(failures.get(0).get('location'), 'paths./pets.get.responses.200.schema.properties.petType.description');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Found \'restricted\'');
   });
 
 
@@ -331,6 +333,6 @@ describe('no-restricted-words', () => {
     assert.equal(failures.size, 1);
 
     assert.equal(failures.get(0).get('location'), 'paths./pets.get.parameters[0].schema.properties.petType.description');
-    assert.equal(failures.get(0).get('hint'), '');
+    assert.equal(failures.get(0).get('hint'), 'Found \'restricted\'');
   });
 });
