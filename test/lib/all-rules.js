@@ -14,6 +14,8 @@ describe('all-rules should have common attributes', () => {
 
     _.filter(items, (element) => { /\.js$/.test(element); }).forEach((element) => {
       const requiredName = path.parse(element).name;
+
+      // eslint-disable-next-line global-require, import/no-dynamic-require
       const rule = require(`../../${rulesPath}/${requiredName}`);
 
       it(`${requiredName} should have common attributes`, () => {
