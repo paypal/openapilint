@@ -13,7 +13,7 @@
   },
   "scripts": {
     "lint": "eslint *.js ./lib ./test",
-    "test": "mocha --check-leaks --recursive --reporter spec test && npm run lint"
+    "test": "mocha && npm run lint"
   },
   "files": [
     "lib"
