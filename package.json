@@ -12,8 +12,8 @@
     "node": ">=4.2"
   },
   "scripts": {
-    "test": "mocha --check-leaks --recursive --reporter spec test",
-    "lint": "eslint *.js ./lib ./test"
+    "lint": "eslint *.js ./lib ./test",
+    "test": "mocha --check-leaks --recursive --reporter spec test && npm run lint"
   },
   "files": [
     "lib"
