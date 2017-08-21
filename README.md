@@ -59,6 +59,14 @@ By default, only the rules in `lib/rules` are supported.  Details of these rules
 
 Due to the complex nature of multi-file references, `openapilint` rules assume that a schema is fully dereferenced as much as possible. It is up to you to dereference the schema before passing it as input.
 
+## License
+
+See [License](LICENSE).
+
+## Contributing
+
+See [Contributing](CONTRIBUTING.md).
+
 ## Acknowledgements
 
 This project was inspired by - and heavily influenced by - [`openapilint`](https://github.com/openapilint/openapilint/) and [`markdownlint`](https://github.com/DavidAnson/markdownlint).  The configuration schema and some code was modified for usage in this project.
