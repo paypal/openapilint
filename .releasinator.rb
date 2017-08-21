@@ -2,20 +2,19 @@ configatron.product_name = "openapilint"
 
 # List of items to confirm from the person releasing.  Required, but empty list is ok.
 configatron.prerelease_checklist_items = [
+  "Sanity check the master branch.",
+  "Unit tests passed."
 ]
 
-# The directory where all distributed docs are.  If not specified, the default is `.`.
-# configatron.base_docs_dir = '.'
-
 def build_method
-  abort("please implement build_method method")
+  CommandProcessor.command("npm test", live_output=true)
 end
 
 # The command that builds the project.  Required.
 configatron.build_method = method(:build_method)
 
 def publish_to_package_manager(version)
-  abort("please implement publish_to_package_manager method")
+  CommandProcessor.command("npm publish .")
 end
 
 # The method that publishes the project to the package manager.  Required.
