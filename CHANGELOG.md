@@ -1,33 +1,33 @@
 openapilint release notes
 ============================
 
-0.4.0
+v0.4.0
 -----
 * Add hints to all rules.
 * Add `schema` object validation to `no-restricted-words`.
 
-0.3.0
+v0.3.0
 -----
 * Add implementation of `no-inconsistent-param-visibility`.
 * Add implementation of `no-path-item-parameters`.
 * Add implementation of `path-parameters`.
 
-0.2.1
+v0.2.1
 -----
 * Fix bug where a path `parameters` object was being treated like an operation.
 
-0.2.0
+v0.2.0
 -----
 * Remove some unhelpful classes from response objects.
 * Add implementation of `operation-tags`.
 * Add implementation of `tags-ref`.
 * Rename `docs-path` to validate `info.x-publicDocsPath` instead of `info.x-docsPath`.
 
-0.1.1
+v0.1.1
 -----
 * Fix some bad docs.
 * Add some missing entries to `package.json`.
 
-0.1.0
+v0.1.0
 -----
 * Initial release!
