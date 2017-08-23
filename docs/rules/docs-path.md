@@ -7,7 +7,7 @@ Validates that the `info.x-publicDocsPath` is present, and well formed.  `x-publ
 ```json
 {
   "info": {
-    "x-publicDocsPath": "myApiPath"
+    "x-publicDocsPath": "myApiPath-includes-dashes"
   }
 }
 ```

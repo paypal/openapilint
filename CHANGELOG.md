@@ -5,6 +5,7 @@ v0.4.0
 -----
 * Add hints to all rules.
 * Add `schema` object validation to `no-restricted-words`.
+* Add `-` character to allowed `docs-path` path.
 
 v0.3.0
 -----

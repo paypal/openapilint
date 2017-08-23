@@ -9,7 +9,7 @@ describe('docs-path', () => {
   it('should not report errors when x-publicDocsPath is present', () => {
     const schema = {
       info: {
-        'x-publicDocsPath': 'myApiPath'
+        'x-publicDocsPath': 'myApiPath-includes-dashes'
       }
     };
 
