@@ -59,6 +59,10 @@ By default, only the rules in `lib/rules` are supported.  Details of these rules
 
 Due to the complex nature of multi-file references, `openapilint` rules assume that a schema is fully dereferenced as much as possible. It is up to you to dereference the schema before passing it as input.
 
+## OpenAPI supported versions
+
+`openapilint` supports Swagger 2.0.  Support for OpenAPI 3.0 is coming shortly.
+
 ## License
 
 See [License](LICENSE).
