@@ -14,10 +14,10 @@ end
 
 def validate_version_match()
   if 'v'+package_version() != @current_release.version
-    Printer.fail("Package.json version v#{package_version} does not match changelog version #{@current_release.version}.")
+    Printer.fail("package.json version v#{package_version} does not match changelog version #{@current_release.version}.")
     abort()
   end
-  Printer.success("Package.json version v#{package_version} matches latest changelog version #{@current_release.version}.")
+  Printer.success("package.json version v#{package_version} matches latest changelog version #{@current_release.version}.")
 end
 
 def validate_paths
