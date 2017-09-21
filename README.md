@@ -73,7 +73,7 @@ See [Contributing](CONTRIBUTING.md).
 
 ## Acknowledgements
 
-This project was inspired by - and heavily influenced by - [`openapilint`](https://github.com/openapilint/openapilint/) and [`markdownlint`](https://github.com/DavidAnson/markdownlint).  The configuration schema and some code was modified for usage in this project.
+This project was inspired by - and heavily influenced by - [`eslint`](https://github.com/eslint/eslint/) and [`markdownlint`](https://github.com/DavidAnson/markdownlint).  The configuration schema and some code was modified for usage in this project.
 
 [npm-image]: https://img.shields.io/npm/v/openapilint.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/openapilint
