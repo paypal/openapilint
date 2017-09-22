@@ -73,7 +73,15 @@ The config for this rule consists of:
 ```json
 {
   "paths": {
-    "/incomplete-param/{id/more-stuff": {}
+    "/invalid-param/{id/more-stuff": {}
+  }
+}
+```
+
+```json
+{
+  "paths": {
+    "/another-invalid-param/{id/more-stuff}": {}
   }
 }
 ```
