@@ -29,14 +29,13 @@ describe('path-parameters', () => {
     }
   };
 
-  it('should not report errors when path parameters match the path parameters in the URI', (done) => {
+  it('should not report errors when path parameters match the path parameters in the URI', () => {
     const failures = pathParametersRule.validate(options, validSchema);
 
     assert.equal(failures.size, 0);
-    done();
   });
 
-  it('should report error when a parameter specified in path is missing from parameter list', (done) => {
+  it('should report error when a parameter specified in path is missing from parameter list', () => {
     const schema = _.cloneDeep(validSchema);
 
     schema.paths['first/{first_id}/second/{id}'].get.parameters = [];
@@ -48,10 +47,9 @@ describe('path-parameters', () => {
     assert.equal(failures.get(0).get('hint'), 'missing from parameter list: first_id');
     assert.equal(failures.get(1).get('location'), 'paths.first/{first_id}/second/{id}.get');
     assert.equal(failures.get(1).get('hint'), 'missing from parameter list: id');
-    done();
   });
 
-  it('should report error when there is an extra path parameter in the parameters list not in path', (done) => {
+  it('should report error when there is an extra path parameter in the parameters list not in path', () => {
     const schema = _.cloneDeep(validSchema);
 
     schema.paths['first/{first_id}/second/{id}'].get.parameters.push({
@@ -65,10 +63,9 @@ describe('path-parameters', () => {
     assert.equal(failures.size, 1);
     assert.equal(failures.get(0).get('location'), 'paths.first/{first_id}/second/{id}.get.parameters[2]');
     assert.equal(failures.get(0).get('hint'), 'missing from path template: third_id');
-    done();
   });
 
-  it('should report several errors for lots of problems', (done) => {
+  it('should report several errors for lots of problems', () => {
     const schema = {
       paths: {
         'first/{id}': {
@@ -127,6 +124,5 @@ describe('path-parameters', () => {
     assert.equal(failures.get(4).get('hint'), 'missing from path template: event_id');
     assert.equal(failures.get(5).get('location'), 'paths.second/{customer_id}/details.put');
     assert.equal(failures.get(5).get('hint'), 'missing from parameter list: customer_id');
-    done();
   });
 });

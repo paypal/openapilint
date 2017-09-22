@@ -17,7 +17,7 @@ describe('no-inconsistent-param-visibility', () => {
     default: 'INTERNAL'
   };
 
-  it('should not report errors when all parameters have consistent parameter visibility', (done) => {
+  it('should not report errors when all parameters have consistent parameter visibility', () => {
     const schema = {
       paths: {
         '/pets': {
@@ -50,10 +50,9 @@ describe('no-inconsistent-param-visibility', () => {
     const failures = noInconsistentParamVisibilityRule.validate(options, schema);
 
     assert.equal(failures.size, 0);
-    done();
   });
 
-  it('should report two errors when two paths have parameters', (done) => {
+  it('should report two errors when two paths have parameters', () => {
     const schema = {
       paths: {
         '/pets': {
@@ -76,6 +75,5 @@ describe('no-inconsistent-param-visibility', () => {
     assert.equal(failures.size, 1);
     assert.equal(failures.get(0).get('location'), 'paths./pets.parameters[0]');
     assert.equal(failures.get(0).get('hint'), 'EXTERNAL more visible than parent INTERNAL');
-    done();
   });
 });

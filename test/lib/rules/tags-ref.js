@@ -6,7 +6,7 @@ const rootTagsRule = require('../../../lib/rules/tags-ref');
 describe('tags-ref', () => {
   const options = true;
 
-  it('should not report errors when all operations tags are in the root tags', (done) => {
+  it('should not report errors when all operations tags are in the root tags', () => {
     const schema = {
       tags: [
         {
@@ -25,10 +25,9 @@ describe('tags-ref', () => {
     const failures = rootTagsRule.validate(options, schema);
 
     assert.equal(failures.size, 0);
-    done();
   });
 
-  it('should report errors when some operation tags are not present in root tags', (done) => {
+  it('should report errors when some operation tags are not present in root tags', () => {
     const schema = {
       tags: [
         {
@@ -57,6 +56,5 @@ describe('tags-ref', () => {
     assert.equal(failures.get(0).get('hint'), 'Tag not found');
     assert.equal(failures.get(1).get('location'), 'paths./pets.put.tags[0]');
     assert.equal(failures.get(1).get('hint'), 'Tag not found');
-    done();
   });
 });
