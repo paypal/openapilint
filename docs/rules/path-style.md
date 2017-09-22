@@ -1,4 +1,4 @@
-# enforce path parameters that conform to spec, and optionally to a specified input style (path-style)
+# enforce paths that conform to spec, and to a specified input style (path-style)
 
 Validates that the `paths` keys conform to the spec.  The [spec](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#pathsObject) states: 
 
@@ -43,7 +43,7 @@ The config for this rule consists of:
 ```json
 {
   "paths": {
-    "noslash": {
+    "pets": {
     }
   }
 }
@@ -61,7 +61,7 @@ The config for this rule consists of:
 ```json
 {
   "paths": {
-    "/trailingslash/": {
+    "/pets/": {
     }
   }
 }
