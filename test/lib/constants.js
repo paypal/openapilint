@@ -13,7 +13,7 @@ describe('constants', () => {
     });
   });
 
-  ['', '{', '}', '{pets', 'pets}', '{{pets}', '{pets}}', '{pe ts}', '}pets{'].forEach((pathElement) => {
+  ['', '{', '}', '{}', '{pets', 'pets}', '{{pets}', '{pets}}', '{pe ts}', '}pets{'].forEach((pathElement) => {
     describe(`reValidPathTemplateParam ${pathElement}`, () => {
       it('should not match regex', () => {
         assert.isTrue(!pathElement.match(constants.reValidPathTemplateParam));
