@@ -46,7 +46,7 @@ describe('path-style', () => {
     assert.throws(badConfigRuleFunction, Error, 'Invalid config to path-style specified');
   });
 
-  it('should report an error for a path without a starting slash', (done) => {
+  it('should report an error for a path without a starting slash', () => {
     const schema = { paths: { pets: { } } };
 
     const failures = pathStyleRule.validate(spineCaseOptions, schema);
@@ -54,10 +54,9 @@ describe('path-style', () => {
     assert.equal(failures.size, 1);
     assert.equal(failures.get(0).get('location'), 'paths.pets');
     assert.equal(failures.get(0).get('hint'), 'Missing a leading slash');
-    done();
   });
 
-  it('should report an error for a path not matching the case', (done) => {
+  it('should report an error for a path not matching the case', () => {
     const schema = { paths: { '/badCase': { } } };
 
     const failures = pathStyleRule.validate(spineCaseOptions, schema);
@@ -65,10 +64,9 @@ describe('path-style', () => {
     assert.equal(failures.size, 1);
     assert.equal(failures.get(0).get('location'), 'paths./badCase');
     assert.equal(failures.get(0).get('hint'), '"badCase" does not comply with style: "spine-case"');
-    done();
   });
 
-  it('should report an error for two slashes together', (done) => {
+  it('should report an error for two slashes together', () => {
     const schema = { paths: { '/pets//food': { } } };
 
     const failures = pathStyleRule.validate(spineCaseOptions, schema);
@@ -76,10 +74,9 @@ describe('path-style', () => {
     assert.equal(failures.size, 1);
     assert.equal(failures.get(0).get('location'), 'paths./pets//food');
     assert.equal(failures.get(0).get('hint'), 'Must not have empty path elements');
-    done();
   });
 
-  it('should report an error for a path with a trailing slash', (done) => {
+  it('should report an error for a path with a trailing slash', () => {
     const schema = { paths: { '/pets/': { } } };
 
     const failures = pathStyleRule.validate(spineCaseOptions, schema);
@@ -87,10 +84,9 @@ describe('path-style', () => {
     assert.equal(failures.size, 1);
     assert.equal(failures.get(0).get('location'), 'paths./pets/');
     assert.equal(failures.get(0).get('hint'), 'Must not have a trailing slash');
-    done();
   });
 
-  it('should report an error for a path with invalid path params', (done) => {
+  it('should report an error for a path with invalid path params', () => {
     const schema = { paths: { '/incomplete-param/{id/more-stuff': { } } };
 
     const failures = pathStyleRule.validate(spineCaseOptions, schema);
@@ -98,10 +94,9 @@ describe('path-style', () => {
     assert.equal(failures.size, 1);
     assert.equal(failures.get(0).get('location'), 'paths./incomplete-param/{id/more-stuff');
     assert.equal(failures.get(0).get('hint'), '"{id" does not comply with style: "spine-case"');
-    done();
   });
 
-  it('should report an error for a path with invalid path params', (done) => {
+  it('should report an error for a path with invalid path params', () => {
     const schema = { paths: { '/another-invalid-param/{id/more-stuff}': { } } };
 
     const failures = pathStyleRule.validate(spineCaseOptions, schema);
@@ -111,6 +106,5 @@ describe('path-style', () => {
     assert.equal(failures.get(0).get('hint'), '"{id" does not comply with style: "spine-case"');
     assert.equal(failures.get(1).get('location'), 'paths./another-invalid-param/{id/more-stuff}');
     assert.equal(failures.get(1).get('hint'), '"more-stuff}" does not comply with style: "spine-case"');
-    done();
   });
 });
