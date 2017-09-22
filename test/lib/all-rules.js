@@ -25,6 +25,7 @@ describe('all-rules should have common attributes', () => {
 
         // validating a rule should return a failure list
         const result = rule.validate({}, {});
+
         assert.isTrue(result instanceof List, `${requiredName} returned a ${result} instead of a List`);
       });
     });

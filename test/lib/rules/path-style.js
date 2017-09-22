@@ -11,38 +11,45 @@ describe('path-style', () => {
   it('should not report errors for no paths', () => {
     const schema = { paths: { } };
     const failures = pathStyleRule.validate(spineCaseOptions, schema);
+
     assert.equal(failures.size, 0);
   });
 
   it('should not report errors when the paths match the spine-case style', () => {
     const schema = { paths: { '/first/{id}/second-third': {}, '/fourth': {} } };
     const failures = pathStyleRule.validate(spineCaseOptions, schema);
+
     assert.equal(failures.size, 0);
   });
 
   it('should not report errors when the paths match the cap-spine-case style', () => {
     const schema = { paths: { '/FIRST/{id}/SECOND-THIRD': { }, '/FOURTH': {} } };
     const failures = pathStyleRule.validate(capSpineCaseOptions, schema);
+
     assert.equal(failures.size, 0);
   });
 
   it('should not report errors when the paths match the snake-case style', () => {
     const schema = { paths: { '/first/{id}/second_third': {} } };
     const failures = pathStyleRule.validate(snakeCaseOptions, schema);
+
     assert.equal(failures.size, 0);
   });
 
   it('should not report errors when the paths is just a slash', () => {
     const schema = { paths: { '/': {} } };
     const failures = pathStyleRule.validate(spineCaseOptions, schema);
+
     assert.equal(failures.size, 0);
   });
 
   it('should report an error when the config is not properly specified', () => {
     const badConfigRuleFunction = () => {
       const schema = {};
+
       pathStyleRule.validate({}, schema);
     };
+
     assert.throws(badConfigRuleFunction, Error, 'Invalid config to path-style specified');
   });
 

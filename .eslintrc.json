@@ -8,7 +8,39 @@
   },
 
   "rules": {
+    // Don't allow any dangling commas
     "comma-dangle": ["error", "never"],
-    "strict": ["off"]
+
+    // Allow devDependencies in this directory, since it is for scripts only.
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": true
+    }],
+
+    // Require spaces before block comments...
+    "lines-around-comment": [2, {
+      // ...except when first line of array, or...
+      "allowArrayStart": true,
+      // ...except when first line of block, or...
+      "allowBlockStart": true,
+      // ...except when first line of object.
+      "allowObjectStart": true
+    }],
+
+    // Visually set-off the var assignment from the rest of code.
+    "newline-after-var": 2,
+    // Visually set-off the return from the rest of code.
+    "newline-before-return": 2,
+
+    // It is ok if a property of an obj gets reassigned but not the object itself
+    "no-param-reassign": ["error", { "props": false }],
+
+    // This is an es6 rule, but enabling it requires node 6+
+    "strict": ["off"],
+
+    // Require developers to describe function purpose, arguments, and returns.
+    "require-jsdoc": 2,
+    "valid-jsdoc": [2, {
+      "requireReturn": false
+    }]
   }
 }

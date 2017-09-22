@@ -6,6 +6,7 @@ const Map = require('immutable').Map;
 
 const expect = chai.expect;
 const assert = chai.assert;
+
 chai.use(chaiAsPromised);
 
 describe('OpenApiLint', () => {

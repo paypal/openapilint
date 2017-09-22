@@ -38,6 +38,7 @@ describe('path-parameters', () => {
 
   it('should report error when a parameter specified in path is missing from parameter list', (done) => {
     const schema = _.cloneDeep(validSchema);
+
     schema.paths['first/{first_id}/second/{id}'].get.parameters = [];
 
     const failures = pathParametersRule.validate(options, schema);
@@ -52,6 +53,7 @@ describe('path-parameters', () => {
 
   it('should report error when there is an extra path parameter in the parameters list not in path', (done) => {
     const schema = _.cloneDeep(validSchema);
+
     schema.paths['first/{first_id}/second/{id}'].get.parameters.push({
       name: 'third_id',
       type: 'string',
