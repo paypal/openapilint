@@ -7,8 +7,6 @@ describe('path-style', () => {
   const spineCaseOptions = { style: 'spine-case' };
   const capSpineCaseOptions = { style: 'cap-spine-case' };
   const snakeCaseOptions = { style: 'snake-case' };
-  const camelCaseOptions = { style: 'camel-case' };
-  const properCaseOptions = { style: 'proper-case' };
 
   it('should not report errors for no paths', () => {
     const schema = { paths: { } };
@@ -34,15 +32,9 @@ describe('path-style', () => {
     assert.equal(failures.size, 0);
   });
 
-  it('should not report errors when the paths match the camel-case style', () => {
-    const schema = { paths: { '/first/{id}/secondThird': { } } };
-    const failures = pathStyleRule.validate(camelCaseOptions, schema);
-    assert.equal(failures.size, 0);
-  });
-
-  it('should not report errors when the paths match the proper-case style', () => {
-    const schema = { paths: { '/First/{id}/SecondThird': { } } };
-    const failures = pathStyleRule.validate(properCaseOptions, schema);
+  it('should not report errors when the paths is just a slash', () => {
+    const schema = { paths: { '/': {} } };
+    const failures = pathStyleRule.validate(spineCaseOptions, schema);
     assert.equal(failures.size, 0);
   });
 
@@ -72,7 +64,18 @@ describe('path-style', () => {
 
     assert.equal(failures.size, 1);
     assert.equal(failures.get(0).get('location'), 'paths./badCase');
-    assert.equal(failures.get(0).get('hint'), 'Does not match case: "spine-case"');
+    assert.equal(failures.get(0).get('hint'), '"badCase" does not comply with style: "spine-case"');
+    done();
+  });
+
+  it('should report an error for two slashes together', (done) => {
+    const schema = { paths: { '/pets//food': { } } };
+
+    const failures = pathStyleRule.validate(spineCaseOptions, schema);
+
+    assert.equal(failures.size, 1);
+    assert.equal(failures.get(0).get('location'), 'paths./pets//food');
+    assert.equal(failures.get(0).get('hint'), 'Must not have empty path elements');
     done();
   });
 

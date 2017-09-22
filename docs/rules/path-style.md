@@ -24,16 +24,14 @@ The config for this rule consists of:
   * `spine-case` Example: `/this-is-a-spine-case-path`.  **This is option is preferred.**
   * `cap-spine-case` Example: `/THIS-IS-A-CAP-SPINE-CASE-PATH`
   * `snake-case`  Example: `/this_is_a_snake_case_path`
-  * `camel-case`  Example: `/thisIsACamelCasePath`
-  * `proper-case`  Example: `/ThisIsAProperCasePathCase`
 
 ## Example of *correct* usage given config `{"style": "spine-case"}` 
 
 ```json
 {
   "paths": {
-    "/first/{id}/second": {
-    }
+    "/": {},
+    "/first/{id}/second-third": {}
   }
 }
 ```
@@ -43,8 +41,7 @@ The config for this rule consists of:
 ```json
 {
   "paths": {
-    "pets": {
-    }
+    "/pets//food": {}
   }
 }
 ```
@@ -52,8 +49,7 @@ The config for this rule consists of:
 ```json
 {
   "paths": {
-    "/badCase": {
-    }
+    "pets": {}
   }
 }
 ```
@@ -61,8 +57,7 @@ The config for this rule consists of:
 ```json
 {
   "paths": {
-    "/pets/": {
-    }
+    "/badCase": {}
   }
 }
 ```
@@ -70,8 +65,15 @@ The config for this rule consists of:
 ```json
 {
   "paths": {
-    "/incomplete-param/{id/more-stuff": {
-    }
+    "/pets/": {}
+  }
+}
+```
+
+```json
+{
+  "paths": {
+    "/incomplete-param/{id/more-stuff": {}
   }
 }
 ```
