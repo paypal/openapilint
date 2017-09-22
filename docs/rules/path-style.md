@@ -14,7 +14,7 @@ Not specified in the spec, but validated here:
 
 Not validated in this rule:
 
-* The style of the path templates within curly braces.  A separate rule, or another config option for this rule can be added to validate path templates.
+* The style of the path templates within curly braces.  A separate rule, or another config option for this rule can be added to validate the path template id style.
 
 ## Config
 
