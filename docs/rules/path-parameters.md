@@ -7,7 +7,7 @@ Validates that the sum of the parameters with {"location": "path"} matches the n
 ```json
 {
   "paths": {
-    "first/{id}": {
+    "/first/{id}": {
       "get": {
         "parameters": [
           {
@@ -18,7 +18,7 @@ Validates that the sum of the parameters with {"location": "path"} matches the n
         ]
       }
     },
-    "first/{first_id}/second/{id}": {
+    "/first/{first_id}/second/{id}": {
       "get": {
         "parameters": [
           {
@@ -34,7 +34,7 @@ Validates that the sum of the parameters with {"location": "path"} matches the n
         ]
       }
     },
-    "second/{customer_id}/details": {
+    "/second/{customer_id}/details": {
       "get": {
         "parameters": [
           {
@@ -50,7 +50,7 @@ Validates that the sum of the parameters with {"location": "path"} matches the n
         ]
       }
     },
-    "second/{customer_id}/{event_id}/detials": {
+    "/second/{customer_id}/{event_id}/detials": {
       "get": {
         "parameters": [
           {
@@ -75,7 +75,7 @@ Validates that the sum of the parameters with {"location": "path"} matches the n
 ```json
 {
   "paths": {
-    "first/{id}": {
+    "/first/{id}": {
         "get": {
           "id": "first.get"
         },
@@ -83,7 +83,7 @@ Validates that the sum of the parameters with {"location": "path"} matches the n
           "id": "first.create"
         }
     },
-    "second/{customer_id}/details": {
+    "/second/{customer_id}/details": {
       "get": {
         "parameters": [
           {
