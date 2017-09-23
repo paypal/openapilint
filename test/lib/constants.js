@@ -24,49 +24,49 @@ describe('constants', () => {
   // -------- //
 
   ['word', 'some-words', 'a-b-c-word-d'].forEach((pathElement) => {
-    describe(`style.spine-case ${pathElement}`, () => {
+    describe(`style.spine ${pathElement}`, () => {
       it('should match regex', () => {
-        assert.isTrue(!!pathElement.match(constants.styles['spine-case']));
+        assert.isTrue(!!pathElement.match(constants.caseStyles.spine));
       });
     });
   });
 
   ['PETS', 'peTS', 'PET_S', 'Pe_Ts', 'PE-ts'].forEach((pathElement) => {
-    describe(`style.spine-case ${pathElement}`, () => {
+    describe(`style.spine ${pathElement}`, () => {
       it('should not match regex', () => {
-        assert.isTrue(!pathElement.match(constants.styles['spine-case']));
+        assert.isTrue(!pathElement.match(constants.caseStyles.spine));
       });
     });
   });
 
   ['WORD', 'SOME-WORDS', 'A-B-C-WORD-D'].forEach((pathElement) => {
-    describe(`style.cap-spine-case ${pathElement}`, () => {
+    describe(`style.cap-spine ${pathElement}`, () => {
       it('should match regex', () => {
-        assert.isTrue(!!pathElement.match(constants.styles['cap-spine-case']));
+        assert.isTrue(!!pathElement.match(constants.caseStyles['cap-spine']));
       });
     });
   });
 
   ['word', 'some-words', 'a-b-c-word-d', 'peTS', 'PET_S'].forEach((pathElement) => {
-    describe(`style.cap-spine-case ${pathElement}`, () => {
+    describe(`style.cap-spine ${pathElement}`, () => {
       it('should not match regex', () => {
-        assert.isTrue(!pathElement.match(constants.styles['cap-spine-case']));
+        assert.isTrue(!pathElement.match(constants.caseStyles['cap-spine']));
       });
     });
   });
 
   ['word', 'some_words', 'a_b_c_word_d'].forEach((pathElement) => {
-    describe(`style.snake-case ${pathElement}`, () => {
+    describe(`style.snake ${pathElement}`, () => {
       it('should match regex', () => {
-        assert.isTrue(!!pathElement.match(constants.styles['snake-case']));
+        assert.isTrue(!!pathElement.match(constants.caseStyles.snake));
       });
     });
   });
 
   ['WORD', 'SOME-WORDS', 'some-words', 'PET_S'].forEach((pathElement) => {
-    describe(`style.snake-case ${pathElement}`, () => {
+    describe(`style.snake ${pathElement}`, () => {
       it('should not match regex', () => {
-        assert.isTrue(!pathElement.match(constants.styles['snake-case']));
+        assert.isTrue(!pathElement.match(constants.caseStyles.snake));
       });
     });
   });

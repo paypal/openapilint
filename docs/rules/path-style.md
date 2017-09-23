@@ -20,12 +20,12 @@ Not validated in this rule:
 
 The config for this rule consists of:
 
-* `style`: a string specifying the style.  Choices are:
-  * `spine-case` Example: `/this-is-a-spine-case-path`.  **This is option is preferred.**
-  * `cap-spine-case` Example: `/THIS-IS-A-CAP-SPINE-CASE-PATH`
-  * `snake-case`  Example: `/this_is_a_snake_case_path`
+* `case`: a string specifying the case style.  Choices are:
+  * `spine` Example: `/this-is-a-spine-case-path`.  **This is option is preferred.**
+  * `cap-spine` Example: `/THIS-IS-A-CAP-SPINE-CASE-PATH`
+  * `snake`  Example: `/this_is_a_snake_case_path`
 
-## Example of *correct* usage given config `{"style": "spine-case"}` 
+## Example of *correct* usage given config `{"case": "spine"}` 
 
 ```json
 {
@@ -36,7 +36,7 @@ The config for this rule consists of:
 }
 ```
 
-## Examples of *incorrect* usage given config `{"style": "spine-case"}` 
+## Examples of *incorrect* usage given config `{"case": "spine"}` 
 
 ```json
 {
