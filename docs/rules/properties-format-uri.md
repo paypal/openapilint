@@ -11,6 +11,7 @@ Validates that any properties with name ending in `url` or `uri` include `{"form
       "get": {
         "parameters": [
           {
+            "in": "body",
             "schema": {
               "type": "object",
               "properties": {
@@ -54,6 +55,7 @@ Validates that any properties with name ending in `url` or `uri` include `{"form
       "get": {
         "parameters": [
           {
+            "in": "body",
             "schema": {
               "type": "object",
               "properties": {

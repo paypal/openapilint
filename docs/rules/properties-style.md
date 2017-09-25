@@ -11,6 +11,7 @@ Validates that all properties' keys are `snake_case` style.
       "get": {
         "parameters": [
           {
+            "in": "body",
             "schema": {
               "type": "object",
               "properties": {
@@ -48,6 +49,7 @@ Validates that all properties' keys are `snake_case` style.
       "get": {
         "parameters": [
           {
+            "in": "body",
             "schema": {
               "type": "object",
               "properties": {

@@ -6,11 +6,27 @@ Validates that properties with the word `country` are named `country_code`, or e
 
 ```json
 {
+  "definitions": {
+    "Pet": {
+      "properties": {
+        "country_code": {
+          "type": "string"
+        }
+      }
+    },
+    "Pets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Pet"
+      }
+    }
+  },
   "paths": {
     "/pets": {
       "get": {
         "parameters": [
           {
+            "in": "body",
             "schema": {
               "type": "object",
               "properties": {
@@ -24,12 +40,7 @@ Validates that properties with the word `country` are named `country_code`, or e
         "responses": {
           "200": {
             "schema": {
-              "type": "object",
-              "properties": {
-                "country_code": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/Pets"
             }
           }
         }
@@ -37,11 +48,11 @@ Validates that properties with the word `country` are named `country_code`, or e
       "put": {
         "parameters": [
           {
+            "in": "body",
             "schema": {
               "allOf": [
                 {
                   "type": "object",
-                  "discriminator": "petType",
                   "properties": {
                     "foreign_pet_country_code": {
                       "type": "string"
@@ -70,11 +81,27 @@ Validates that properties with the word `country` are named `country_code`, or e
 
 ```json
 {
+  "definitions": {
+    "Pet": {
+      "properties": {
+        "my_country": {
+          "type": "string"
+        }
+      }
+    },
+    "Pets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Pet"
+      }
+    }
+  },
   "paths": {
     "/pets": {
       "get": {
         "parameters": [
           {
+            "in": "body",
             "schema": {
               "type": "object",
               "properties": {
@@ -88,12 +115,7 @@ Validates that properties with the word `country` are named `country_code`, or e
         "responses": {
           "200": {
             "schema": {
-              "type": "object",
-              "properties": {
-                "country_code_blah_blah": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/Pets"
             }
           }
         }
@@ -101,11 +123,11 @@ Validates that properties with the word `country` are named `country_code`, or e
       "put": {
         "parameters": [
           {
+            "in": "body",
             "schema": {
               "allOf": [
                 {
                   "type": "object",
-                  "discriminator": "petType",
                   "properties": {
                     "my_country_tis_of_thee": {
                       "type": "string"
