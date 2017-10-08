@@ -111,7 +111,7 @@ describe('path-style', () => {
     assert.equal(failures.get(0).get('hint'), '"{id" does not comply with case: "spine"');
   });
 
-  it('should report an error for a path with invalid path params', () => {
+  it('should report errors for a path with invalid path params', () => {
     const schema = { paths: { '/another-invalid-param/{id/more-stuff}': { } } };
 
     const failures = pathStyleRule.validate(spineCaseOptions, schema);
