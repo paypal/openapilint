@@ -1,7 +1,7 @@
 openapilint release notes
 ============================
 
-v-next
+v0.5.0
 -----
 * Add definition and implementation of `path-style`.
 
