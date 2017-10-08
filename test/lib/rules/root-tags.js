@@ -9,8 +9,8 @@ describe('root-tags', () => {
   it('should not report errors when tags is present and non-empty', () => {
     const schema = {
       tags: [
-          { name: 'tag1' },
-          { name: 'tag2' }
+        { name: 'tag1' },
+        { name: 'tag2' }
       ]
     };
 
