@@ -46,7 +46,7 @@ configatron.publish_to_package_manager_method = method(:publish_to_package_manag
 
 
 def wait_for_package_manager(version)
-  CommandProcessor.wait_for("wget -U \"non-empty-user-agent\" -qO- https://registry.npmjs.org/openapilint | jq '.[\"dist-tags\"][\"latest\"]' | grep #{version} | cat")
+  CommandProcessor.wait_for("wget -U \"non-empty-user-agent\" -qO- https://registry.npmjs.org/openapilint | jq '.[\"dist-tags\"][\"latest\"]' | grep #{package_version()} | cat")
 end
 
 # The method that waits for the package manager to be done.  Required.
