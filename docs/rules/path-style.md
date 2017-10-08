@@ -24,6 +24,7 @@ The config for this rule consists of:
   * `spine` Example: `/this-is-a-spine-case-path`.  **This is option is preferred.**
   * `cap-spine` Example: `/THIS-IS-A-CAP-SPINE-CASE-PATH`
   * `snake`  Example: `/this_is_a_snake_case_path`
+  * `any`  Example: `/thisIs-Any_old_paTH--`
 
 ## Example of *correct* usage given config `{"case": "spine"}` 
 
