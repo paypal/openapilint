@@ -63,6 +63,10 @@ Due to the complex nature of multi-file references, `openapilint` rules assume t
 
 `openapilint` supports Swagger 2.0.  Support for OpenAPI 3.0 is coming shortly.
 
+## Comparison to other validators
+
+`openapilint` does have some overlapping features with other json validators, such as [`joi`](https://github.com/hapijs/joi) and [`jsonschema`](https://github.com/tdegrunt/jsonschema).  A developer using this project may choose to use those validators as a first wave of checks against a particular spec before running it through the `openapilint` set of rules.  This is expected and encouraged.  `openapilint` is to add easy convention checks and configuration specific to OpenAPI, as well as some helpful hints for particular errors.
+
 ## License
 
 See [License](LICENSE).
@@ -73,7 +77,7 @@ See [Contributing](CONTRIBUTING.md).
 
 ## Acknowledgements
 
-This project was inspired by - and heavily influenced by - [`eslint`](https://github.com/eslint/eslint/) and [`markdownlint`](https://github.com/DavidAnson/markdownlint).  The configuration schema and some code was modified for usage in this project.
+This project was inspired by - and heavily influenced by - [`eslint`](https://github.com/eslint/eslint/), [`markdownlint`](https://github.com/DavidAnson/markdownlint), and [`swagger-api-checkstyle`](https://github.com/jharmn/swagger-api-checkstyle).  The configuration schema and some code was modified for usage in this project.
 
 [npm-image]: https://img.shields.io/npm/v/openapilint.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/openapilint
