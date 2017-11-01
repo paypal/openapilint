@@ -13,7 +13,8 @@
   },
   "scripts": {
     "lint": "eslint *.js ./lib ./test",
-    "test": "mocha && npm run lint"
+    "pretest": "npm run lint",
+    "test": "mocha"
   },
   "files": [
     "lib"
