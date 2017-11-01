@@ -45,4 +45,16 @@ describe('docs-path', () => {
     assert.equal(failures.get(0).get('location'), 'info.x-publicDocsPath');
     assert.equal(failures.get(0).get('hint'), 'Not a valid path');
   });
+
+  it('should not report error when x-publicDocsPath has a period', () => {
+    const schema = {
+      info: {
+        'x-publicDocsPath': 'path.subpath'
+      }
+    };
+
+    const failures = docsPathRule.validate(options, schema);
+
+    assert.equal(failures.size, 0);
+  });
 });
