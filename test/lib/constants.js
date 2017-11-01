@@ -70,4 +70,20 @@ describe('constants', () => {
       });
     });
   });
+
+  ['WORD', 'SOME-some_words', 'a-b-c-word-d---..', 'PET_S', 'Pe_Ts', 'PE.ts-'].forEach((pathElement) => {
+    describe(`style.any ${pathElement}`, () => {
+      it('should match regex', () => {
+        assert.isTrue(!!pathElement.match(constants.caseStyles.any));
+      });
+    });
+  });
+
+  ['{', '}', '#', '@', '!', '^', '&', '(', ')', '+', '=', '?', ',', '<', '>', '/', '*'].forEach((pathElement) => {
+    describe(`style.any ${pathElement}`, () => {
+      it('should not match regex', () => {
+        assert.isTrue(!pathElement.match(constants.caseStyles.any));
+      });
+    });
+  });
 });
