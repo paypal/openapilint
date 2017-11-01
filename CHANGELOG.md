@@ -1,6 +1,10 @@
 openapilint release notes
 ============================
 
+v0.5.1
+-----
+* Add support for `.` in caseStyle.any, allowing `info.x-publicDocsPath` to contain `.`'s.
+
 v0.5.0
 -----
 * Add definition and implementation of `path-style`.
