@@ -50,7 +50,7 @@ Validates that the sum of the parameters with {"location": "path"} matches the n
         ]
       }
     },
-    "/second/{customer_id}/{event_id}/detials": {
+    "/second/{customer_id}/{event_id}/details": {
       "get": {
         "parameters": [
           {
