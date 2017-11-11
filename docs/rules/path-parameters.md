@@ -1,6 +1,6 @@
 # enforce path parameter parity (path-parameters)
 
-Validates that the sum of the parameters with {"location": "path"} matches the number of path template parameters in the URI.
+Validates that the sum of the parameters with {"location": "path"} matches the number of path template parameters in the URI, and that required='true'.  See the [spec](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#fixed-fields-7) for the full description.
 
 ## Examples of *correct* usage
 
@@ -13,7 +13,8 @@ Validates that the sum of the parameters with {"location": "path"} matches the n
           {
             "name": "id",
             "type": "string",
-            "in": "path"
+            "in": "path",
+            "required": true
           }
         ]
       }
@@ -24,12 +25,14 @@ Validates that the sum of the parameters with {"location": "path"} matches the n
           {
             "name": "first_id",
             "type": "string",
-            "in": "path"
+            "in": "path",
+            "required": true
           },
           {
             "name": "id",
             "type": "string",
-            "in": "path"
+            "in": "path",
+            "required": true
           }
         ]
       }
@@ -40,7 +43,8 @@ Validates that the sum of the parameters with {"location": "path"} matches the n
           {
             "name": "customer_id",
             "type": "string",
-            "in": "path"
+            "in": "path",
+            "required": true
           },
           {
             "name": "merchant_id",
@@ -56,12 +60,14 @@ Validates that the sum of the parameters with {"location": "path"} matches the n
           {
             "name": "customer_id",
             "type": "string",
-            "in": "path"
+            "in": "path",
+            "required": true
           },
           {
             "name": "event_id",
             "type": "string",
-            "in": "path"
+            "in": "path",
+            "required": true
           }
         ]
       }
@@ -76,12 +82,8 @@ Validates that the sum of the parameters with {"location": "path"} matches the n
 {
   "paths": {
     "/first/{id}": {
-        "get": {
-          "id": "first.get"
-        },
-        "post": {
-          "id": "first.create"
-        }
+      "get": {},
+      "post": {}
     },
     "/second/{customer_id}/details": {
       "get": {
@@ -89,12 +91,14 @@ Validates that the sum of the parameters with {"location": "path"} matches the n
           {
             "name": "customer_id",
             "type": "string",
-            "in": "path"
+            "in": "path",
+            "required": true
           },
           {
-            "name": "event_id",
+            "name": "extra_path_id",
             "type": "string",
-            "in": "path"
+            "in": "path",
+            "required": true
           }
         ]
       },
@@ -103,16 +107,29 @@ Validates that the sum of the parameters with {"location": "path"} matches the n
           {
             "name": "customer",
             "type": "string",
-            "in": "path"
+            "in": "path",
+            "required": true
           },
           {
-            "name": "event_id",
+            "name": "extra_path_id",
+            "type": "string",
+            "in": "path",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/missing_required/{customer_id}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "customer_id",
             "type": "string",
             "in": "path"
           }
         ]
       }
-    }
+    },
   }
 }
 ```
