@@ -83,6 +83,7 @@ Validates that properties with the word `country` are named `country_code`, or e
 {
   "definitions": {
     "Pet": {
+      "type": "object",
       "properties": {
         "my_country": {
           "type": "string"
