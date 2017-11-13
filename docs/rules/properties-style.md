@@ -1,8 +1,14 @@
-# enforce all properties' keys are `snake_case` style (properties-style)
+# enforce all properties' keys conform to a specified input style (properties-style)
 
-Validates that all properties' keys are `snake_case` style.
+Validates that all properties' keys conform to a specified input style.
 
-## Examples of *correct* usage
+## Config
+
+The config for this rule consists of:
+
+* `case`: a string specifying the case style.  Choices are defined in the [common docs](../common.md).
+
+## Example of *correct* usage given config `{"case": "snake_case"}` 
 
 ```json
 {
@@ -40,7 +46,7 @@ Validates that all properties' keys are `snake_case` style.
 }
 ```
 
-## Examples of **incorrect** usage
+## Examples of **incorrect** usage given config `{"case": "snake_case"}` 
 
 ```json
 {

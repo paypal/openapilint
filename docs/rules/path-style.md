@@ -20,11 +20,7 @@ Not validated in this rule:
 
 The config for this rule consists of:
 
-* `case`: a string specifying the case style.  Choices are:
-  * `spine` Example: `/this-is-a-spine-case-path`.  **This is option is preferred.**
-  * `cap-spine` Example: `/THIS-IS-A-CAP-SPINE-CASE-PATH`
-  * `snake`  Example: `/this_is_a_snake_case_path`
-  * `any`  Example: `/thisIs-Any_old_paTH--`
+* `case`: a string specifying the case style.  Choices are defined in the [common docs](../common.md).
 
 ## Example of *correct* usage given config `{"case": "spine"}` 
 
