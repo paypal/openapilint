@@ -58,7 +58,7 @@ describe('path-style', () => {
       pathStyleRule.validate({}, schema);
     };
 
-    assert.throws(badConfigRuleFunction, Error, 'Invalid config to path-style specified');
+    assert.throws(badConfigRuleFunction, Error, 'Invalid config specified');
   });
 
   it('should report an error for a path without a starting slash', () => {
