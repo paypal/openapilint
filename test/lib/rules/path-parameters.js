@@ -37,7 +37,7 @@ describe('path-parameters', () => {
     assert.equal(failures.size, 0);
   });
 
-  it('should report error when a parameter specified in path is Missing from parameter list', () => {
+  it('should report error when a parameter specified in path is missing from parameter list', () => {
     const schema = _.cloneDeep(validSchema);
 
     schema.paths['/first/{first_id}/second/{id}'].get.parameters = [];
