@@ -1,9 +1,15 @@
 openapilint release notes
 ============================
 
-v.next
+v0.6.0
 -----
+* Add definition and implementation of `no-orphan-refs`.
 * Add definition and implementation of `no-path-dupes`.
+* Add definition and implementation of `properties-custom`.
+* Add definition and implementation of `properties-style`.
+* Add definition and implementation of `root-consumes`.
+* Add definition and implementation of `root-produces`.
+* Add `required=true` check to `path-parameters`.
 
 v0.5.1
 -----
