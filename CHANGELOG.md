@@ -1,6 +1,10 @@
 openapilint release notes
 ============================
 
+v.next
+-----
+* Add definition and implementation of `no-path-dupes`.
+
 v0.5.1
 -----
 * Add support for `.` in caseStyle.any, allowing `info.x-publicDocsPath` to contain `.`'s.
