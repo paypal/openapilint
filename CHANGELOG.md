@@ -1,6 +1,10 @@
 openapilint release notes
 ============================
 
+v0.6.1
+-----
+* Fix bug where a type-less `allOf` was being ignored.
+
 v0.6.0
 -----
 * Add definition and implementation of `no-orphan-refs`.
