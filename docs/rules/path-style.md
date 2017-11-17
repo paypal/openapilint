@@ -22,7 +22,7 @@ The config for this rule consists of:
 
 * `case`: a string specifying the case style.  Choices are defined in the [common docs](../common.md).
 
-## Example of *correct* usage given config `{"case": "spine"}` 
+## Example of *correct* usage given config `{"case": "spine"}`
 
 ```json
 {
@@ -33,7 +33,7 @@ The config for this rule consists of:
 }
 ```
 
-## Examples of *incorrect* usage given config `{"case": "spine"}` 
+## Examples of *incorrect* usage given config `{"case": "spine"}`
 
 ```json
 {
