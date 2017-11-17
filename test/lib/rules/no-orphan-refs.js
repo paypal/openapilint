@@ -38,6 +38,43 @@ describe('no-orphan-refs', () => {
     assert.equal(failures.size, 0);
   });
 
+  it('should not report errors when all refs are reachable with an implicit allOf', () => {
+    const schema = {
+      definitions: {
+        Pet: {
+        }
+      },
+      paths: {
+        '/pets': {
+          put: {
+            parameters: [
+              {
+                schema: {
+                  allOf: [
+                    {
+                      properties: {
+                        related_resources: {
+                          type: 'array',
+                          items: {
+                            $ref: '#/definitions/Pet'
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    };
+
+    const failures = noOrphanRefsRule.validate(options, schema);
+
+    assert.equal(failures.size, 0);
+  });
+
   it('should report an error when a definition ref is not reachable', () => {
     const schema = {
       definitions: {
