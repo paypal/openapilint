@@ -34,6 +34,9 @@
     // It is ok if a property of an obj gets reassigned but not the object itself
     "no-param-reassign": ["error", { "props": false }],
 
+    // This library needs to support node 4.  Spread is not available there.
+    "prefer-spread": 0,
+
     // This is an es6 rule, but enabling it requires node 6+
     "strict": ["off"],
 
