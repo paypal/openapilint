@@ -152,7 +152,7 @@ describe('properties-custom', () => {
         }
       };
 
-      const failures = propertiesCustomRule.validate(options, schema);
+      const failures = propertiesCustomRule.validate([options], schema);
 
       assert.equal(failures.size, 1);
       assert.equal(failures.get(0).get('location'), 'paths./pets.get.responses.200.schema.items.properties.my_country_tis_of_thee');

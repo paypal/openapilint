@@ -2,10 +2,10 @@
 
 Validates that properties match their provided constraints. Constraints are provided in a simple format:
 
-1. When `whenField` matches `whenRegex`,
-2. Then `thenField` MUST match `thenRegex`.
+1. When `whenField` matches `whenPattern`,
+2. Then `thenField` MUST match `thenPattern`.
 
-This format works for almost any constraint.  `xField` is the name of the property's field, or `$key` to indicate the property's key. `xRegex` is a properly escaped regex string.
+This format works for almost any constraint.  `xField` is the name of the property's field, or `$key` to indicate the property's key. `xPattern` is a properly escaped regex string. For more than one constraint, use an array of constraint options.
 
 ## Config A
 
@@ -14,9 +14,9 @@ Validates that properties with the word `country` are named `country_code`, or e
 ```json
 {
   "whenField": "$key",
-  "whenRegex": "country",
+  "whenPattern": "country",
   "thenField": "$key",
-  "thenRegex": "^(?:.+_|)country_code$"
+  "thenPattern": "^(?:.+_|)country_code$"
 }
 
 ```
