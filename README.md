@@ -65,7 +65,7 @@ Due to the complex nature of multi-file references, `openapilint` rules assume t
 
 ## Comparison to other validators
 
-`openapilint` does have some overlapping features with other json validators, such as [`joi`](https://github.com/hapijs/joi) and [`jsonschema`](https://github.com/tdegrunt/jsonschema).  A developer using this project may choose to use those validators as a first wave of checks against a particular spec before running it through the `openapilint` set of rules.  This is expected and encouraged.  `openapilint` is to add easy convention checks and configuration specific to OpenAPI, as well as some helpful hints for particular errors.
+`openapilint` does have some overlapping features with other json validators, such as [`joi`](https://github.com/hapijs/joi) and [`jsonschema`](https://github.com/tdegrunt/jsonschema).  A developer using this project may choose to use those validators as a first wave of checks against a particular spec before running it through the `openapilint` set of rules.  This is expected and encouraged. The rules implemented within `openapilint` go above and beyond those validators by targeting the common OpenAPI-specific problems.
 
 ## License
 
