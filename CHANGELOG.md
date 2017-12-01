@@ -1,6 +1,11 @@
 openapilint release notes
 ============================
 
+v0.7.0
+-----
+* Add support for arrays in `*-custom` configs.
+* Add definition and implementation of `parameters-custom`.
+
 v0.6.1
 -----
 * Fix bug where a type-less `allOf` was being ignored.
