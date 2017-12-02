@@ -7,6 +7,8 @@ Validates that schema objects match their provided constraints. Constraints are 
 
 This format works for almost any constraint.  `xField` is the name of the schema's field. `xPattern` is a properly escaped regex string. For more than one constraint, use an array of constraint options.
 
+Since `allOf` objects can be handled specially, they are ignored by default. To enable them in a config, add the config `alsoApplyTo` with a list of items: `alsoApplyTo: [ "allOf" ]`.
+
 ## Config A
 
 Validates that when schema objects have `type` = `object`, they must have a `title` property with at least one non-whitespace character.
@@ -16,7 +18,10 @@ Validates that when schema objects have `type` = `object`, they must have a `tit
   "whenField": "type",
   "whenPattern": "object",
   "thenField": "title",
-  "thenPattern": "^\\s"
+  "thenPattern": "^\\s",
+  "alsoApplyTo": [
+    "allOf" 
+  ]
 }
 
 ```
