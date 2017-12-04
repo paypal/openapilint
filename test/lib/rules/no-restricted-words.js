@@ -4,7 +4,7 @@ const assert = require('chai').assert;
 const noRestrictedWordsRule = require('../../../lib/rules/no-restricted-words');
 
 describe('no-restricted-words', () => {
-  const options = { words: ['blah-blah', 'restricted'] };
+  const options = { words: ['blah-blah', 'RESTRICTED'] };
 
   it('should not report errors when not enabled', () => {
     const schema = {};
@@ -28,6 +28,14 @@ describe('no-restricted-words', () => {
               {
                 name: 'limit',
                 description: 'maximum number of results to return'
+              },
+              {
+                name: 'test1',
+                description: 'test unrestricted word that should not match because it is not a word match'
+              },
+              {
+                name: 'test2',
+                description: 'test restrictederer word that should not match because it is not a word match'
               }
             ],
             responses: {
@@ -94,9 +102,9 @@ describe('no-restricted-words', () => {
     assert.equal(failures.size, 11);
 
     assert.equal(failures.get(0).get('location'), 'info.title');
-    assert.equal(failures.get(0).get('hint'), 'Found \'blah-blah\'');
+    assert.equal(failures.get(0).get('hint'), 'Found \'restricted blah-blah\'');
     assert.equal(failures.get(1).get('location'), 'info.title');
-    assert.equal(failures.get(1).get('hint'), 'Found \'restricted\'');
+    assert.equal(failures.get(1).get('hint'), 'Found \'restricted blah-blah\'');
     assert.equal(failures.get(2).get('location'), 'info.description');
     assert.equal(failures.get(2).get('hint'), 'Found \'restricted\'');
     assert.equal(failures.get(3).get('location'), 'paths./pets.get.description');
@@ -257,6 +265,7 @@ describe('no-restricted-words', () => {
             responses: {
               200: {
                 schema: {
+                  type: 'array',
                   items: {
                     description: 'restricted'
                   }
@@ -284,6 +293,7 @@ describe('no-restricted-words', () => {
             responses: {
               200: {
                 schema: {
+                  type: 'object',
                   properties: {
                     petType: {
                       description: 'restricted'
@@ -315,6 +325,7 @@ describe('no-restricted-words', () => {
               {
                 in: 'body',
                 schema: {
+                  type: 'object',
                   properties: {
                     petType: {
                       description: 'restricted'

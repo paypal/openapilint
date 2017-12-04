@@ -48,7 +48,7 @@ describe('OpenApiLint', () => {
   it('should return a single key with one failure for a basic no-restricted-words test', () => {
     const config = {
       rules: {
-        'no-restricted-words': { words: ['bl'] }
+        'no-restricted-words': { words: ['blah'] }
       }
     };
     const schema = {
