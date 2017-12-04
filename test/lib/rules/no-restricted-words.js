@@ -28,6 +28,14 @@ describe('no-restricted-words', () => {
               {
                 name: 'limit',
                 description: 'maximum number of results to return'
+              },
+              {
+                name: 'test1',
+                description: 'test unrestricted word that should not match because it is not a word match'
+              },
+              {
+                name: 'test2',
+                description: 'test restrictederer word that should not match because it is not a word match'
               }
             ],
             responses: {
