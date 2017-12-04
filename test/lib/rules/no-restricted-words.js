@@ -257,6 +257,7 @@ describe('no-restricted-words', () => {
             responses: {
               200: {
                 schema: {
+                  type: 'array',
                   items: {
                     description: 'restricted'
                   }
@@ -284,6 +285,7 @@ describe('no-restricted-words', () => {
             responses: {
               200: {
                 schema: {
+                  type: 'object',
                   properties: {
                     petType: {
                       description: 'restricted'
@@ -315,6 +317,7 @@ describe('no-restricted-words', () => {
               {
                 in: 'body',
                 schema: {
+                  type: 'object',
                   properties: {
                     petType: {
                       description: 'restricted'
