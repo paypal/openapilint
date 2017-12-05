@@ -4,6 +4,7 @@ openapilint release notes
 v0.7.0
 -----
 * Add support for arrays in `*-custom` configs.
+* Add definition and implementation of `no-ref-overrides`.
 * Add definition and implementation of `parameters-custom`.
 * Add definition and implementation of `schema-custom`.
 * Fix `no-restricted-words` to be more correct.
