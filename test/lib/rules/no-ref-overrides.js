@@ -6,7 +6,7 @@ const noRefOverridesRule = require('../../../lib/rules/no-ref-overrides');
 describe('no-ref-overrides', () => {
   const options = { allowProperties: ['description'] };
 
-  it('should not report errors when all refs are reachable', () => {
+  it('should not report errors there are no ref overrides beyond those configured', () => {
     const schema = {
       definitions: {
         Pet: {}
@@ -32,7 +32,7 @@ describe('no-ref-overrides', () => {
     assert.equal(failures.size, 0);
   });
 
-  it('should report an error when a definition ref is not reachable', () => {
+  it('should report an error a ref override is found that is not allowed', () => {
     const schema = {
       definitions: {
         Pet: {}

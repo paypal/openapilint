@@ -360,9 +360,9 @@ describe('properties-custom', () => {
       assert.equal(failures.get(0).get('location'), 'paths./pets.get.parameters[0].schema.properties.service_uri');
       assert.equal(failures.get(0).get('hint'), 'Expected property format:"not-a-uri" to match "^uri$"');
       assert.equal(failures.get(1).get('location'), 'paths./pets.get.parameters[0].schema.properties.profile_url');
-      assert.equal(failures.get(1).get('hint'), 'Expected property format:"undefined" to match "^uri$"');
+      assert.equal(failures.get(1).get('hint'), 'Expected property format to be present and to match "^uri$"');
       assert.equal(failures.get(2).get('location'), 'paths./pets.get.responses.200.schema.properties.my_return_url');
-      assert.equal(failures.get(2).get('hint'), 'Expected property format:"undefined" to match "^uri$"');
+      assert.equal(failures.get(2).get('hint'), 'Expected property format to be present and to match "^uri$"');
     });
   });
 });
