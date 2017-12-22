@@ -63,4 +63,56 @@ describe('parameters-custom', () => {
       assert.equal(failures.get(0).get('hint'), 'Expected parameter description:"This header description is not awesome." to match "server stores keys for \\d+ [days|hours]"');
     });
   });
+
+  describe('PayPal-Request-Id parameters must be capitalized correctly', () => {
+    const options = {
+      whenField: 'name',
+      whenPatternIgnoreCase: '^PayPal-Request-Id$',
+      thenField: 'name',
+      thenPattern: '^PayPal-Request-Id$'
+    };
+
+    it('should not report errors when PayPal-Request-Id parameter is correct', () => {
+      const schema = {
+        paths: {
+          '/pets': {
+            get: {
+              parameters: [
+                {
+                  name: 'PayPal-Request-Id'
+                }
+              ]
+            }
+          }
+        }
+      };
+
+      const failures = parametersCustomRule.validate(options, schema);
+
+      assert.equal(failures.size, 0);
+    });
+
+
+    it('should report an error when the case is incorrect', () => {
+      const schema = {
+        paths: {
+          '/pets': {
+            get: {
+              parameters: [
+                {
+                  name: 'PAYPAL-REQUEST-ID'
+                }
+              ]
+            }
+          }
+        }
+      };
+
+      const failures = parametersCustomRule.validate([options], schema);
+
+      assert.equal(failures.size, 1);
+      assert.equal(failures.get(0).get('location'), 'paths./pets.get.parameters[0]');
+      assert.equal(failures.get(0).get('hint'), 'Expected parameter name:"PAYPAL-REQUEST-ID" to match "^PayPal-Request-Id$"');
+    });
+  });
 });
