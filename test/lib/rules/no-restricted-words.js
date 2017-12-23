@@ -257,6 +257,31 @@ describe('no-restricted-words', () => {
   });
 
 
+  it('should report error when a schema object title has restricted words', () => {
+    const schema = {
+      paths: {
+        '/pets': {
+          get: {
+            responses: {
+              200: {
+                schema: {
+                  title: 'restricted'
+                }
+              }
+            }
+          }
+        }
+      }
+    };
+
+    const failures = noRestrictedWordsRule.validate(options, schema);
+
+    assert.equal(failures.size, 1);
+
+    assert.equal(failures.get(0).get('location'), 'paths./pets.get.responses.200.schema.title');
+    assert.equal(failures.get(0).get('hint'), 'Found \'restricted\'');
+  });
+
   it('should report error when a schema items description has restricted words', () => {
     const schema = {
       paths: {
