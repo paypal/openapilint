@@ -1,4 +1,4 @@
-# enforce certain words are not included in text fields, including title, summary, or description (no-restricted-words)
+# enforce certain words or phrases are not included in text fields, including title, summary, or description (no-restricted-words)
 
 Validates that title, summary, or description do not contain restricted strings.  These are strings that may be used internally, or those which are no longer recommended branding terms.  Any accepted term is matched, and case is ignored.
 
