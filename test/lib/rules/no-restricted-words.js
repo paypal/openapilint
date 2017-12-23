@@ -4,7 +4,7 @@ const assert = require('chai').assert;
 const noRestrictedWordsRule = require('../../../lib/rules/no-restricted-words');
 
 describe('no-restricted-words', () => {
-  const options = { words: ['blah-blah', 'RESTRICTED'] };
+  const options = { words: ['blah-blah', 'RESTRICTED', 'My Deprecated Brand'] };
 
   it('should not report errors when not enabled', () => {
     const schema = {};
@@ -345,5 +345,39 @@ describe('no-restricted-words', () => {
 
     assert.equal(failures.get(0).get('location'), 'paths./pets.get.parameters[0].schema.properties.petType.description');
     assert.equal(failures.get(0).get('hint'), 'Found \'restricted\'');
+  });
+
+  it('should report error when a body request property description has restricted words', () => {
+    const schema = {
+      paths: {
+        '/pets': {
+          get: {
+            description: 'Sample operation description of MY DEPRECATED brand',
+            parameters: [
+              {
+                name: 'limit',
+                description: 'Sample param description for my DEPRECATED brand'
+              }
+            ],
+            responses: {
+              200: {
+                description: 'sample response for my deprecated brand'
+              }
+            }
+          }
+        }
+      }
+    };
+
+    const failures = noRestrictedWordsRule.validate(options, schema);
+
+    assert.equal(failures.size, 3);
+
+    assert.equal(failures.get(0).get('location'), 'paths./pets.get.description');
+    assert.equal(failures.get(0).get('hint'), 'Found \'Sample operation description of MY DEPRECATED brand\'');
+    assert.equal(failures.get(1).get('location'), 'paths./pets.get.parameters[0].description');
+    assert.equal(failures.get(1).get('hint'), 'Found \'Sample param description for my DEPRECATED brand\'');
+    assert.equal(failures.get(2).get('location'), 'paths./pets.get.responses.200.description');
+    assert.equal(failures.get(2).get('hint'), 'Found \'sample response for my deprecated brand\'');
   });
 });
