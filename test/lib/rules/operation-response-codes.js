@@ -64,10 +64,10 @@ describe('operation-response-codes', () => {
 
     it('should throw error when options are invalid', () => {
       const badConfigRuleFunction = () => {
-        operationResponseCodesRule.validate({ whenHttpMethod: 'get'}, {});
+        operationResponseCodesRule.validate({ whenHttpMethod: 'get' }, {});
       };
 
       assert.throws(badConfigRuleFunction, Error, 'Invalid option specified: {"whenHttpMethod":"get"}');
     });
-  })
+  });
 });
