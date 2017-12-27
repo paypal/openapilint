@@ -65,3 +65,53 @@ Validates that `PayPal-Request-Id` parameters have a `description` that matches 
 }
 ```
 
+
+## Config B
+
+Validates that `PayPal-Request-Id` parameters have the correct case.
+
+```json
+{
+  "whenField": "name",
+  "whenPatternIgnoreCase": "^PayPal-Request-Id$",
+  "thenField": "name",
+  "thenPattern": "^PayPal-Request-Id$"
+}
+```
+
+### Examples of *correct* usage with above config
+
+```json
+{
+  "paths": {
+    "/pets": {
+      "get": {
+        "parameters": [
+          {
+            "name": "PayPal-Request-Id"
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+### Examples of *incorrect* usage with above config
+
+```json
+{
+  "paths": {
+    "/pets": {
+      "get": {
+        "parameters": [
+          {
+            "name": "PAYPAL-REQUEST-ID"
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
