@@ -38,7 +38,7 @@ describe('text-content', () => {
       assert.equal(failures.size, 0);
     });
 
-    it('should report errors when titles are not present', () => {
+    it('should report 3 errors when does not start with capital letter', () => {
       const schema = {
         info: {
           title: '    Title with spaces'
@@ -68,6 +68,68 @@ describe('text-content', () => {
       assert.equal(failures.get(2).get('hint'), 'Expected "the lower case description" to match "^[A-Z]"');
     });
   });
+
+  describe('title, summary, and description all start with a letter', () => {
+    const options = {
+      applyTo: [
+        'title',
+        'summary',
+        'description'
+      ],
+      matchPatternIgnoreCase: '^[A-Z]'
+    };
+
+    it('should not report errors when valid', () => {
+      const schema = {
+        info: {
+          title: 'Good title with no leading spaces'
+        },
+        paths: {
+          '/pets': {
+            get: {
+              summary: 'the correct case summary',
+              parameters: [
+                {
+                  description: 'the correct case description'
+                }
+              ]
+            }
+          }
+        }
+      };
+
+      const failures = textContentRule.validate(options, schema);
+
+      assert.equal(failures.size, 0);
+    });
+
+    it('should report 1 error when there are spaces in front of a title', () => {
+      const schema = {
+        info: {
+          title: '    Title with spaces'
+        },
+        paths: {
+          '/pets': {
+            get: {
+              summary: 'the lower case summary',
+              parameters: [
+                {
+                  description: 'The upper case description'
+                }
+              ]
+            }
+          }
+        }
+      };
+
+      const failures = textContentRule.validate(options, schema);
+
+      assert.equal(failures.size, 1);
+      assert.equal(failures.get(0).get('location'), 'info.title');
+      assert.equal(failures.get(0).get('hint'), 'Expected "    Title with spaces" to match "^[A-Z]"');
+    });
+  });
+
 
   describe('summary and description all end with a period (`.`).', () => {
     const options = {
@@ -132,6 +194,42 @@ describe('text-content', () => {
       assert.equal(failures.get(0).get('hint'), 'Expected "The incorrect summary without punctuation" to match "\\.$"');
       assert.equal(failures.get(1).get('location'), 'paths./pets.get.parameters[0].description');
       assert.equal(failures.get(1).get('hint'), 'Expected "The incorrect description with trailing spaces.   " to match "\\.$"');
+    });
+  });
+
+
+  describe('descriptions should not have the word supersecret, any case', () => {
+    const options = {
+      applyTo: [
+        'description'
+      ],
+      notMatchPatternIgnoreCase: 'supersecret'
+    };
+
+    it('should not report errors when valid', () => {
+      const schema = {
+        info: {
+          description: 'Good description with no secret words'
+        }
+      };
+
+      const failures = textContentRule.validate(options, schema);
+
+      assert.equal(failures.size, 0);
+    });
+
+    it('should report errors when secret words are present', () => {
+      const schema = {
+        info: {
+          description: 'Bad description with superSECRET word'
+        }
+      };
+
+      const failures = textContentRule.validate(options, schema);
+
+      assert.equal(failures.size, 1);
+      assert.equal(failures.get(0).get('location'), 'info.description');
+      assert.equal(failures.get(0).get('hint'), 'Expected "Bad description with superSECRET word" to not match "supersecret"');
     });
   });
 });
