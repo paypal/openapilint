@@ -115,4 +115,46 @@ describe('parameters-custom', () => {
       assert.equal(failures.get(0).get('hint'), 'Expected parameter name:"PAYPAL-REQUEST-ID" to match "^PayPal-Request-Id$"');
     });
   });
+
+  describe('bad config', () => {
+    it('should throw an error with empty config', () => {
+      const badConfigRuleFunction = () => {
+        const schema = {};
+
+        parametersCustomRule.validate({}, schema);
+      };
+
+      assert.throws(badConfigRuleFunction, Error, 'Invalid option specified: {}');
+    });
+
+    it('should throw an error missing option fields', () => {
+      const badConfigRuleFunction = () => {
+        const schema = {};
+        const options = {
+          whenField: 'name'
+        };
+
+        parametersCustomRule.validate(options, schema);
+      };
+
+      assert.throws(badConfigRuleFunction, Error, 'Invalid option specified: {"whenField":"name"}');
+    });
+
+    it('should throw an error when a pattern and patternIgnoreCase is provided', () => {
+      const badConfigRuleFunction = () => {
+        const schema = {};
+        const options = {
+          whenField: 'name',
+          whenPattern: 'X',
+          whenPatternIgnoreCase: 'X',
+          thenField: 'description',
+          thenPattern: 'X'
+        };
+
+        parametersCustomRule.validate(options, schema);
+      };
+
+      assert.throws(badConfigRuleFunction, Error, 'Invalid option specified: {"whenField":"name","whenPattern":"X","whenPatternIgnoreCase":"X","thenField":"description","thenPattern":"X"}');
+    });
+  });
 });
