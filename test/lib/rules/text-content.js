@@ -3,7 +3,7 @@
 const assert = require('chai').assert;
 const textContentRule = require('../../../lib/rules/text-content');
 
-describe('schema-custom', () => {
+describe('text-content', () => {
   describe('title, summary, and description all start with a capital letter', () => {
     const options = {
       applyTo: [
@@ -80,6 +80,9 @@ describe('schema-custom', () => {
 
     it('should not report errors when valid', () => {
       const schema = {
+        info: {
+          title: 'Should ignore this title'
+        },
         paths: {
           '/pets': {
             get: {
@@ -99,17 +102,24 @@ describe('schema-custom', () => {
       assert.equal(failures.size, 0);
     });
 
-    it('should report errors when titles are not present', () => {
+    it('should report only 2 errors when punctuation is incorrect', () => {
       const schema = {
         paths: {
           '/pets': {
             get: {
-              summary: 'The incorrect summary without puncuation',
+              summary: 'The incorrect summary without punctuation',
               parameters: [
                 {
                   description: 'The incorrect description with trailing spaces.   '
                 }
-              ]
+              ],
+              responses: {
+                200: {
+                  schema: {
+                    title: 'Any issue with titles should be ignored'
+                  }
+                }
+              }
             }
           }
         }
@@ -119,7 +129,7 @@ describe('schema-custom', () => {
 
       assert.equal(failures.size, 2);
       assert.equal(failures.get(0).get('location'), 'paths./pets.get.summary');
-      assert.equal(failures.get(0).get('hint'), 'Expected "The incorrect summary without puncuation" to match "\\.$"');
+      assert.equal(failures.get(0).get('hint'), 'Expected "The incorrect summary without punctuation" to match "\\.$"');
       assert.equal(failures.get(1).get('location'), 'paths./pets.get.parameters[0].description');
       assert.equal(failures.get(1).get('hint'), 'Expected "The incorrect description with trailing spaces.   " to match "\\.$"');
     });
