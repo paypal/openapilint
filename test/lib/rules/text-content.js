@@ -142,6 +142,9 @@ describe('text-content', () => {
 
     it('should not report errors when valid', () => {
       const schema = {
+        definitions: {
+          Pet: {}
+        },
         info: {
           title: 'Should ignore this title'
         },
@@ -153,7 +156,14 @@ describe('text-content', () => {
                 {
                   description: 'The correct punctuated description.'
                 }
-              ]
+              ],
+              responses: {
+                200: {
+                  schema: {
+                    $ref: '#/definitions/Pet'
+                  }
+                }
+              }
             }
           }
         }
@@ -230,6 +240,93 @@ describe('text-content', () => {
       assert.equal(failures.size, 1);
       assert.equal(failures.get(0).get('location'), 'info.description');
       assert.equal(failures.get(0).get('hint'), 'Expected "Bad description with superSECRET word" to not match "supersecret"');
+    });
+  });
+
+
+  describe('title and description ref overrides all start with capital letters.', () => {
+    const options = {
+      applyTo: [
+        'title-ref-override',
+        'description-ref-override'
+      ],
+      matchPattern: '^[A-Z]'
+    };
+
+    it('should not report errors when valid', () => {
+      const schema = {
+        definitions: {
+          Pet: {}
+        },
+        info: {
+          title: 'should ignore this title'
+        },
+        paths: {
+          '/pets': {
+            get: {
+              summary: 'should ignore this one too',
+              parameters: [
+                {
+                  description: 'should ignore this one too'
+                }
+              ],
+              responses: {
+                200: {
+                  schema: {
+                    title: 'Good title in override',
+                    description: 'Good description in override',
+                    $ref: '#/definitions/Pet'
+                  }
+                }
+              }
+            }
+          }
+        }
+      };
+
+      const failures = textContentRule.validate(options, schema);
+
+      assert.equal(failures.size, 0);
+    });
+
+    it('should report only 2 errors when punctuation is incorrect', () => {
+      const schema = {
+        definitions: {
+          Pet: {}
+        },
+        info: {
+          title: 'should ignore this title'
+        },
+        paths: {
+          '/pets': {
+            get: {
+              summary: 'should ignore this one too',
+              parameters: [
+                {
+                  description: 'should ignore this one too'
+                }
+              ],
+              responses: {
+                200: {
+                  schema: {
+                    title: 'bad title in override',
+                    description: 'bad description in override',
+                    $ref: '#/definitions/Pet'
+                  }
+                }
+              }
+            }
+          }
+        }
+      };
+
+      const failures = textContentRule.validate(options, schema);
+
+      assert.equal(failures.size, 2);
+      assert.equal(failures.get(0).get('location'), 'paths./pets.get.responses.200.schema.title#override');
+      assert.equal(failures.get(0).get('hint'), 'Expected "bad title in override" to match "^[A-Z]"');
+      assert.equal(failures.get(1).get('location'), 'paths./pets.get.responses.200.schema.description#override');
+      assert.equal(failures.get(1).get('hint'), 'Expected "bad description in override" to match "^[A-Z]"');
     });
   });
 });

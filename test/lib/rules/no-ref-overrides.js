@@ -57,7 +57,7 @@ describe('no-ref-overrides', () => {
     const failures = noRefOverridesRule.validate(options, schema);
 
     assert.equal(failures.size, 1);
-    assert.equal(failures.get(0).get('location'), 'paths./pets/{id}.get.responses.200.schema.type');
+    assert.equal(failures.get(0).get('location'), 'paths./pets/{id}.get.responses.200.schema.type#override');
     assert.equal(failures.get(0).get('hint'), 'Found $ref object override');
   });
 });

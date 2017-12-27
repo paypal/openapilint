@@ -2,8 +2,10 @@
 
 Validates that `title`, `summary`, or `description` do or do not match a configured pattern. Constraints are provided in a simple format:
 
-1. Use `applyTo` specifies at least one of `title`, `summary`, or `description`,
+1. Use `applyTo` specifies at least one of `title`, `summary`, `description`,
 2. and either `matchPattern` or `notMatchPattern` to specify a condition where the field above MUST match `matchPattern`, or MUST NOT match `notMatchPattern`.
+
+Add `title-ref-override` or `description-ref-override` to the `applyTo` array to indicate ref-overrides are to match the same constraints, if present.
 
 ## Config A
 
