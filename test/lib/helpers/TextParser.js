@@ -1,7 +1,7 @@
 const chai = require('chai');
 const spies = require('chai-spies');
+
 const expect = chai.expect;
-const assert = chai.assert;
 
 chai.use(spies);
 
@@ -12,12 +12,12 @@ describe('TextParser', () => {
     const schema = {
       definitions: {
         Pet: {
-          "description": "Definition description",
-          "type": "object",
-          "properties": {
-            "name": {
-              "description": "Properties.name description"
-            },
+          description: 'Definition description',
+          type: 'object',
+          properties: {
+            name: {
+              description: 'Properties.name description'
+            }
           }
         }
       },
@@ -82,13 +82,12 @@ describe('TextParser', () => {
       expect(spy).to.have.been.called.exactly(1);
     });
 
-    it('Calls function for each summary', () => {         
+    it('Calls function for each summary', () => {
       const spy = chai.spy(textFunc);
 
       parser.forEachTextField(['summary'], spy);
 
       expect(spy).to.have.been.called.exactly(1);
-
     });
   });
 });
