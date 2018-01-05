@@ -329,4 +329,40 @@ describe('text-content', () => {
       assert.equal(failures.get(1).get('hint'), 'Expected "bad description in override" to match "^[A-Z]"');
     });
   });
+
+
+  describe('no http: links', () => {
+    const options = {
+      applyTo: [
+        'title'
+      ],
+      notMatchPattern: '\\(http:'
+    };
+
+    it('should not report errors when valid', () => {
+      const schema = {
+        info: {
+          title: 'This is a good [link](https://example.com).'
+        }
+      };
+
+      const failures = textContentRule.validate(options, schema);
+
+      assert.equal(failures.size, 0);
+    });
+
+    it('should report only 2 errors when punctuation is incorrect', () => {
+      const schema = {
+        info: {
+          title: 'This is not a good [link](http://example.com).'
+        }
+      };
+
+      const failures = textContentRule.validate(options, schema);
+
+      assert.equal(failures.size, 1);
+      assert.equal(failures.get(0).get('location'), 'info.title');
+      assert.equal(failures.get(0).get('hint'), 'Expected "This is not a good [link](http://example.com)." to not match "\\(http:"');
+    });
+  });
 });
