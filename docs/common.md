@@ -21,7 +21,7 @@ For object types that have keys, and are not part of an array, the `whenField` n
 
 Any `*Pattern` can be made case insensitive by adding `IgnoreCase`, such as `thenPatternIgnoreCase`.
 
-The `*Absent` is as it sounds, will match only if the field is not present at all. The following example shows how a `description` field should be absent if the `name` matches a `special_name`:
+The `*Absent` option is as it sounds, will match only if the field is not present at all. The following example shows how a `description` field should be absent if the `name` matches a `special_name`:
 
 ```json
 {
