@@ -9,11 +9,13 @@ describe('PatternOption', () => {
     it('Returns true for valid options', () => {
       assert.isTrue(PatternOption.isValidPatternOption('testPrefix', { testPrefixPattern: 'pattern' }));
       assert.isTrue(PatternOption.isValidPatternOption('testPrefix', { testPrefixPatternIgnoreCase: 'pattern' }));
+      assert.isTrue(PatternOption.isValidPatternOption('testPrefix', { testPrefixAbsent: true }));
     });
 
     it('Returns false for invalid options', () => {
       assert.isFalse(PatternOption.isValidPatternOption('testPrefix', { }));
       assert.isFalse(PatternOption.isValidPatternOption('testPrefix', { testPrefixPattern: 'pattern', testPrefixPatternIgnoreCase: 'pattern' }));
+      assert.isFalse(PatternOption.isValidPatternOption('testPrefix', { testPrefixAbsent: false }));
     });
   });
 
