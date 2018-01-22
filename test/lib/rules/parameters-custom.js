@@ -9,20 +9,59 @@ describe('parameters-custom', () => {
       whenField: 'name',
       whenPattern: '^PayPal-Request-Id$',
       thenField: 'description',
-      thenPattern: 'server stores keys for \\d+ [days|hours]'
+      thenPattern: '^(The server stores keys ((for \\d+ (day(s)?|hour(s)?))|forever))|((When .*, the server .*){2,})\\.$'
     };
 
     it('should not report errors when PayPal-Request-Id parameter is correct', () => {
       const schema = {
         paths: {
           '/pets': {
-            get: {
+            post: {
               parameters: [
                 {
                   name: 'PayPal-Request-Id',
                   in: 'header',
                   type: 'string',
                   description: 'The server stores keys for 24 hours.',
+                  required: false
+                }
+              ]
+            }
+          },
+          '/wild-animals': {
+            post: {
+              parameters: [
+                {
+                  name: 'PayPal-Request-Id',
+                  in: 'header',
+                  type: 'string',
+                  description: 'The server stores keys forever.',
+                  required: false
+                }
+              ]
+            }
+          },
+          '/rabid-creatures': {
+            post: {
+              parameters: [
+                {
+                  name: 'PayPal-Request-Id',
+                  in: 'header',
+                  type: 'string',
+                  description: 'The server stores keys for 30 days.',
+                  required: false
+                }
+              ]
+            }
+          },
+          '/krazy-kats': {
+            post: {
+              parameters: [
+                {
+                  name: 'PayPal-Request-Id',
+                  in: 'header',
+                  type: 'string',
+                  description: 'When intent=action, the server stores keys for 5 days. When intent=badaction, the server ignores this header.',
                   required: false
                 }
               ]
@@ -35,7 +74,6 @@ describe('parameters-custom', () => {
 
       assert.equal(failures.size, 0);
     });
-
 
     it('should report an error when the description does not match pattern', () => {
       const schema = {
@@ -60,7 +98,7 @@ describe('parameters-custom', () => {
 
       assert.equal(failures.size, 1);
       assert.equal(failures.get(0).get('location'), 'paths./pets.get.parameters[0]');
-      assert.equal(failures.get(0).get('hint'), 'Expected parameter description:"This header description is not awesome." to match "server stores keys for \\d+ [days|hours]"');
+      assert.equal(failures.get(0).get('hint'), 'Expected parameter description:"This header description is not awesome." to match "^(The server stores keys ((for \\d+ (day(s)?|hour(s)?))|forever))|((When .*, the server .*){2,})\\.$"');
     });
   });
 
@@ -91,7 +129,6 @@ describe('parameters-custom', () => {
 
       assert.equal(failures.size, 0);
     });
-
 
     it('should report an error when the case is incorrect', () => {
       const schema = {
