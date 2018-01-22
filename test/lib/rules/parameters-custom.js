@@ -153,6 +153,116 @@ describe('parameters-custom', () => {
     });
   });
 
+
+  describe('PayPal-Partner-Attribution-Id parameters must not have a description', () => {
+    const options = {
+      whenField: 'name',
+      whenPatternIgnoreCase: 'PayPal-Partner-Attribution-Id',
+      thenField: 'description',
+      thenAbsent: true
+    };
+
+    it('should not report errors when correct', () => {
+      const schema = {
+        paths: {
+          '/pets': {
+            get: {
+              parameters: [
+                {
+                  name: 'PayPal-Partner-Attribution-Id'
+                }
+              ]
+            }
+          }
+        }
+      };
+
+      const failures = parametersCustomRule.validate(options, schema);
+
+      assert.equal(failures.size, 0);
+    });
+
+
+    it('should report an error when the description is present', () => {
+      const schema = {
+        paths: {
+          '/pets': {
+            get: {
+              parameters: [
+                {
+                  name: 'PayPal-Partner-Attribution-Id',
+                  description: 'This should not be here'
+                }
+              ]
+            }
+          }
+        }
+      };
+
+      const failures = parametersCustomRule.validate([options], schema);
+
+      assert.equal(failures.size, 1);
+      assert.equal(failures.get(0).get('location'), 'paths./pets.get.parameters[0]');
+      assert.equal(failures.get(0).get('hint'), 'Expected parameter description:"This should not be here" to be absent');
+    });
+  });
+
+  describe('If name is absent, description must say "blah"', () => {
+    const options = {
+      whenField: 'name',
+      whenAbsent: true,
+      thenField: 'description',
+      thenPattern: 'blah'
+    };
+
+    it('should not report errors when correct', () => {
+      const schema = {
+        paths: {
+          '/pets': {
+            get: {
+              parameters: [
+                {
+                  description: 'blah'
+                },
+                {
+                  name: 'my_param',
+                  description: 'not blah'
+                }
+              ]
+            }
+          }
+        }
+      };
+
+      const failures = parametersCustomRule.validate(options, schema);
+
+      assert.equal(failures.size, 0);
+    });
+
+
+    it('should report an error when the description is present', () => {
+      const schema = {
+        paths: {
+          '/pets': {
+            get: {
+              parameters: [
+                {
+                  description: 'bad description'
+                }
+              ]
+            }
+          }
+        }
+      };
+
+      const failures = parametersCustomRule.validate([options], schema);
+
+      assert.equal(failures.size, 1);
+      assert.equal(failures.get(0).get('location'), 'paths./pets.get.parameters[0]');
+      assert.equal(failures.get(0).get('hint'), 'Expected parameter description:"bad description" to match "blah"');
+    });
+  });
+
   describe('bad config', () => {
     it('should throw an error with empty config', () => {
       const badConfigRuleFunction = () => {
