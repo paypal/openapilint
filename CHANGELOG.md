@@ -1,6 +1,12 @@
 openapilint release notes
 ============================
 
+v0.9.0
+-----
+* Add `*Absent` option for `*-custom` rules.
+* Remove definition and implementation of `docs-path`.
+* Fix regexes to find only the first match, rather than global.
+
 v0.8.0
 -----
 * Add support for ignoring case in any rule with `*Pattern` configs.
