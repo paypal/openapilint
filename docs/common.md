@@ -31,3 +31,18 @@ The `*Absent` option is as it sounds, will match only if the field is not presen
   "thenAbsent": true
 }
 ```
+
+## `nested properties`
+
+Properties within object types may be referenced in rules.  For example this is a custom response rule that ensures that all non-empty responses are of type object.
+
+```json
+"responses-custom": [
+       {
+        "whenField": "schema.type",
+        "whenPattern": "^((?!undefined).)*$",
+        "thenField": "schema.type",
+        "thenPattern": "^object$"
+        }
+]
+```

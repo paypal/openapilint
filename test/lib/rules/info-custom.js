@@ -99,4 +99,44 @@ describe('info-custom', () => {
       assert.equal(failures.size, 0);
     });
   });
+  describe('process nested properties in rules', () => {
+    const options = {
+        "whenField": "license",
+        "whenPattern": ".*",
+        "thenField": "license.name",
+        "thenPattern": "^License Name$" 
+    };
+
+    it('should not report errors when name property matches', () => {
+      const schema = {
+        info: {
+          license : {
+             name : 'License Name',
+              url : 'https://license.com'
+          } 
+        }
+      };
+
+      const failures = infoCustomRule.validate(options, schema);
+
+      assert.equal(failures.size, 0);
+    });
+
+    it('should report errors when name property does not match', () => {
+      const schema = {
+        info: {
+          license : {
+             name : 'none',
+              url : 'https://license.com'
+          } 
+        }
+      };
+
+      const failures = infoCustomRule.validate([options], schema);
+
+      assert.equal(failures.size, 1);
+      assert.equal(failures.get(0).get('location'), 'info');
+      assert.equal(failures.get(0).get('hint'), 'Expected info license.name:"none" to match "^License Name$"');
+    });
+  });
 });
