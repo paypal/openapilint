@@ -101,19 +101,19 @@ describe('info-custom', () => {
   });
   describe('process nested properties in rules', () => {
     const options = {
-        "whenField": "license",
-        "whenPattern": ".*",
-        "thenField": "license.name",
-        "thenPattern": "^License Name$" 
+      whenField: 'license',
+      whenPattern: '.*',
+      thenField: 'license.name',
+      thenPattern: '^License Name$'
     };
 
     it('should not report errors when name property matches', () => {
       const schema = {
         info: {
-          license : {
-             name : 'License Name',
-              url : 'https://license.com'
-          } 
+          license: {
+            name: 'License Name',
+            url: 'https://license.com'
+          }
         }
       };
 
@@ -125,10 +125,10 @@ describe('info-custom', () => {
     it('should report errors when name property does not match', () => {
       const schema = {
         info: {
-          license : {
-             name : 'none',
-              url : 'https://license.com'
-          } 
+          license: {
+            name: 'none',
+            url: 'https://license.com'
+          }
         }
       };
 
