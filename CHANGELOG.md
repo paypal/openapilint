@@ -1,6 +1,10 @@
 openapilint release notes
 ============================
 
+v0.10.0
+-----
+* Add support for nested properties (thanks `RachelMuller`!).
+
 v0.9.0
 -----
 * Add `*Absent` option for `*-custom` rules.
