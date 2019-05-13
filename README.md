@@ -61,7 +61,7 @@ Due to the complex nature of multi-file references, `openapilint` rules assume t
 
 ## OpenAPI supported versions
 
-`openapilint` supports Swagger 2.0.  Support for OpenAPI 3.0 is coming shortly.
+`openapilint` supports Swagger 2.0.  Support for OpenAPI 3.0 is not planned.
 
 ## Comparison to other validators
 
