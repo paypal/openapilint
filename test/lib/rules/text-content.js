@@ -62,10 +62,10 @@ describe('text-content', () => {
       assert.equal(failures.size, 3);
       assert.equal(failures.get(0).get('location'), 'info.title');
       assert.equal(failures.get(0).get('hint'), 'Expected "    Title with spaces" to match "^[A-Z]"');
-      assert.equal(failures.get(1).get('location'), 'paths./pets.get.summary');
-      assert.equal(failures.get(1).get('hint'), 'Expected "the lower case summary" to match "^[A-Z]"');
-      assert.equal(failures.get(2).get('location'), 'paths./pets.get.parameters[0].description');
-      assert.equal(failures.get(2).get('hint'), 'Expected "the lower case description" to match "^[A-Z]"');
+      assert.equal(failures.get(1).get('location'), 'paths./pets.get.parameters[0].description');
+      assert.equal(failures.get(1).get('hint'), 'Expected "the lower case description" to match "^[A-Z]"');
+      assert.equal(failures.get(2).get('location'), 'paths./pets.get.summary');
+      assert.equal(failures.get(2).get('hint'), 'Expected "the lower case summary" to match "^[A-Z]"');
     });
   });
 
@@ -200,10 +200,10 @@ describe('text-content', () => {
       const failures = textContentRule.validate(options, schema);
 
       assert.equal(failures.size, 2);
-      assert.equal(failures.get(0).get('location'), 'paths./pets.get.summary');
-      assert.equal(failures.get(0).get('hint'), 'Expected "The incorrect summary without punctuation" to match "\\.$"');
-      assert.equal(failures.get(1).get('location'), 'paths./pets.get.parameters[0].description');
-      assert.equal(failures.get(1).get('hint'), 'Expected "The incorrect description with trailing spaces.   " to match "\\.$"');
+      assert.equal(failures.get(0).get('location'), 'paths./pets.get.parameters[0].description');
+      assert.equal(failures.get(0).get('hint'), 'Expected "The incorrect description with trailing spaces.   " to match "\\.$"');
+      assert.equal(failures.get(1).get('location'), 'paths./pets.get.summary');
+      assert.equal(failures.get(1).get('hint'), 'Expected "The incorrect summary without punctuation" to match "\\.$"');
     });
   });
 

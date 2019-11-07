@@ -14,16 +14,21 @@ describe('parameters-custom', () => {
 
     it('should not report errors when PayPal-Request-Id parameter is correct', () => {
       const schema = {
+        definitions: {
+          headerRef: {
+            name: 'PayPal-Request-Id',
+            in: 'header',
+            description: 'The server stores keys for 24 hours',
+            required: false,
+            type: 'string'
+          }
+        },
         paths: {
           '/pets': {
             post: {
               parameters: [
                 {
-                  name: 'PayPal-Request-Id',
-                  in: 'header',
-                  type: 'string',
-                  description: 'The server stores keys for 24 hours.',
-                  required: false
+                  $ref: '#/definitions/headerRef'
                 }
               ]
             }
@@ -59,7 +64,7 @@ describe('parameters-custom', () => {
               parameters: [
                 {
                   name: 'PayPal-Request-Id',
-                  in: 'header',
+                  in: 'query',
                   type: 'string',
                   description: 'When intent=action, the server stores keys for 5 days. When intent=badaction, the server ignores this header.',
                   required: false
@@ -77,15 +82,27 @@ describe('parameters-custom', () => {
 
     it('should report an error when the description does not match pattern', () => {
       const schema = {
+        definitions: {
+          headerRef: {
+            name: 'PayPal-Request-Id',
+            in: 'header',
+            description: 'This header description is not awesome.',
+            required: false,
+            type: 'string'
+          }
+        },
         paths: {
           '/pets': {
             get: {
               parameters: [
                 {
+                  $ref: '#/definitions/headerRef'
+                },
+                {
                   name: 'PayPal-Request-Id',
-                  in: 'header',
+                  in: 'query',
                   type: 'string',
-                  description: 'This header description is not awesome.',
+                  description: 'This query description is not awesome.',
                   required: false
                 }
               ]
@@ -96,9 +113,11 @@ describe('parameters-custom', () => {
 
       const failures = parametersCustomRule.validate([options], schema);
 
-      assert.equal(failures.size, 1);
+      assert.equal(failures.size, 2);
       assert.equal(failures.get(0).get('location'), 'paths./pets.get.parameters[0]');
       assert.equal(failures.get(0).get('hint'), 'Expected parameter description:"This header description is not awesome." to match "^(The server stores keys ((for \\d+ (day(s)?|hour(s)?))|forever))|((When .*, the server .*){2,})\\.$"');
+      assert.equal(failures.get(1).get('location'), 'paths./pets.get.parameters[1]');
+      assert.equal(failures.get(1).get('hint'), 'Expected parameter description:"This query description is not awesome." to match "^(The server stores keys ((for \\d+ (day(s)?|hour(s)?))|forever))|((When .*, the server .*){2,})\\.$"');
     });
   });
 
@@ -110,13 +129,26 @@ describe('parameters-custom', () => {
       thenPattern: '^PayPal-Request-Id$'
     };
 
-    it('should not report errors when PayPal-Request-Id parameter is correct', () => {
+    it('should not report errors when PayPal-Request-Id parameter is correct and definitions path is custom', () => {
       const schema = {
+        customDefinitions: {
+          headerRef: {
+            name: 'PayPal-Request-Id',
+            in: 'header',
+            description: 'The server stores keys for 24 hours',
+            required: false,
+            type: 'string'
+          }
+        },
         paths: {
           '/pets': {
             get: {
               parameters: [
                 {
+                  $ref: '#/customDefinitions/headerRef'
+                },
+                {
+                  in: 'query',
                   name: 'PayPal-Request-Id'
                 }
               ]
@@ -130,13 +162,26 @@ describe('parameters-custom', () => {
       assert.equal(failures.size, 0);
     });
 
-    it('should report an error when the case is incorrect', () => {
+    it('should report an error when the case is incorrect and definitions path is custom', () => {
       const schema = {
+        customDefinitions: {
+          headerRef: {
+            name: 'PAYPAL-REQUEST-ID',
+            in: 'header',
+            description: 'The server stores keys for 24 hours',
+            required: false,
+            type: 'string'
+          }
+        },
         paths: {
           '/pets': {
             get: {
               parameters: [
                 {
+                  $ref: '#/customDefinitions/headerRef'
+                },
+                {
+                  in: 'query',
                   name: 'PAYPAL-REQUEST-ID'
                 }
               ]
@@ -147,9 +192,11 @@ describe('parameters-custom', () => {
 
       const failures = parametersCustomRule.validate([options], schema);
 
-      assert.equal(failures.size, 1);
+      assert.equal(failures.size, 2);
       assert.equal(failures.get(0).get('location'), 'paths./pets.get.parameters[0]');
       assert.equal(failures.get(0).get('hint'), 'Expected parameter name:"PAYPAL-REQUEST-ID" to match "^PayPal-Request-Id$"');
+      assert.equal(failures.get(1).get('location'), 'paths./pets.get.parameters[1]');
+      assert.equal(failures.get(1).get('hint'), 'Expected parameter name:"PAYPAL-REQUEST-ID" to match "^PayPal-Request-Id$"');
     });
   });
 
@@ -169,6 +216,7 @@ describe('parameters-custom', () => {
             get: {
               parameters: [
                 {
+                  in: 'header',
                   name: 'PayPal-Partner-Attribution-Id'
                 }
               ]
@@ -190,6 +238,7 @@ describe('parameters-custom', () => {
             get: {
               parameters: [
                 {
+                  in: 'header',
                   name: 'PayPal-Partner-Attribution-Id',
                   description: 'This should not be here'
                 }
@@ -207,10 +256,10 @@ describe('parameters-custom', () => {
     });
   });
 
-  describe('If name is absent, description must say "blah"', () => {
+  describe('If header parameter, description must say "blah"', () => {
     const options = {
-      whenField: 'name',
-      whenAbsent: true,
+      whenField: 'in',
+      whenPattern: 'header',
       thenField: 'description',
       thenPattern: 'blah'
     };
@@ -222,9 +271,12 @@ describe('parameters-custom', () => {
             get: {
               parameters: [
                 {
+                  in: 'header',
+                  name: 'my_param',
                   description: 'blah'
                 },
                 {
+                  in: 'query',
                   name: 'my_param',
                   description: 'not blah'
                 }
@@ -240,13 +292,15 @@ describe('parameters-custom', () => {
     });
 
 
-    it('should report an error when the description is present', () => {
+    it('should report an error when a header parameter description is incorrect', () => {
       const schema = {
         paths: {
           '/pets': {
             get: {
               parameters: [
                 {
+                  in: 'header',
+                  name: 'my_param',
                   description: 'bad description'
                 }
               ]
