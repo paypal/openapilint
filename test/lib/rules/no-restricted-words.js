@@ -107,14 +107,22 @@ describe('no-restricted-words', () => {
     assert.equal(failures.get(1).get('hint'), 'Found \'restricted blah-blah\'');
     assert.equal(failures.get(2).get('location'), 'info.description');
     assert.equal(failures.get(2).get('hint'), 'Found \'restricted\'');
-    assert.equal(failures.get(3).get('location'), 'paths./pets.get.description');
+    assert.equal(failures.get(3).get('location'), 'paths./pets.get.parameters[0].description');
     assert.equal(failures.get(3).get('hint'), 'Found \'restricted\'');
-    assert.equal(failures.get(4).get('location'), 'paths./pets.get.summary');
+    assert.equal(failures.get(4).get('location'), 'paths./people.get.parameters[0].description');
     assert.equal(failures.get(4).get('hint'), 'Found \'restricted\'');
-    assert.equal(failures.get(5).get('location'), 'paths./pets.get.parameters[0].description');
-    assert.equal(failures.get(5).get('hint'), 'Found \'restricted\'');
-    assert.equal(failures.get(6).get('location'), 'paths./pets.get.responses.200.description');
+    assert.equal(failures.get(6).get('location'), 'paths./pets.get.summary');
     assert.equal(failures.get(6).get('hint'), 'Found \'restricted\'');
+    assert.equal(failures.get(5).get('location'), 'paths./pets.get.description');
+    assert.equal(failures.get(5).get('hint'), 'Found \'restricted\'');
+    assert.equal(failures.get(7).get('location'), 'paths./pets.get.responses.200.description');
+    assert.equal(failures.get(7).get('hint'), 'Found \'restricted\'');
+    assert.equal(failures.get(8).get('location'), 'paths./people.get.description');
+    assert.equal(failures.get(8).get('hint'), 'Found \'restricted\'');
+    assert.equal(failures.get(9).get('location'), 'paths./people.get.summary');
+    assert.equal(failures.get(9).get('hint'), 'Found \'restricted\'');
+    assert.equal(failures.get(10).get('location'), 'paths./people.get.responses.200.description');
+    assert.equal(failures.get(10).get('hint'), 'Found \'restricted\'');
   });
 
   it('should report error when info.title has restricted words', () => {
@@ -398,10 +406,10 @@ describe('no-restricted-words', () => {
 
     assert.equal(failures.size, 3);
 
-    assert.equal(failures.get(0).get('location'), 'paths./pets.get.description');
-    assert.equal(failures.get(0).get('hint'), 'Found \'Sample operation description of MY DEPRECATED brand\'');
-    assert.equal(failures.get(1).get('location'), 'paths./pets.get.parameters[0].description');
-    assert.equal(failures.get(1).get('hint'), 'Found \'Sample param description for my DEPRECATED brand\'');
+    assert.equal(failures.get(1).get('location'), 'paths./pets.get.description');
+    assert.equal(failures.get(1).get('hint'), 'Found \'Sample operation description of MY DEPRECATED brand\'');
+    assert.equal(failures.get(0).get('location'), 'paths./pets.get.parameters[0].description');
+    assert.equal(failures.get(0).get('hint'), 'Found \'Sample param description for my DEPRECATED brand\'');
     assert.equal(failures.get(2).get('location'), 'paths./pets.get.responses.200.description');
     assert.equal(failures.get(2).get('hint'), 'Found \'sample response for my deprecated brand\'');
   });
